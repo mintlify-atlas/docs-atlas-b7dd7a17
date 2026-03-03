@@ -1,0 +1,92 @@
+{
+  "projectType": "saas",
+  "projectName": "jo",
+  "projectDescription": "A local AI assistant for Mac that searches your files, emails, and browsing history with complete privacy.",
+  "theme": "palm",
+  "primaryColor": "#0099ff",
+  "lightColor": "#9f75ff",
+  "darkColor": "#0077cc",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "quickstart",
+              "system-requirements"
+            ]
+          },
+          {
+            "group": "Core Features",
+            "pages": [
+              "features/search",
+              "features/data-sources",
+              "features/privacy",
+              "features/cloud-models"
+            ]
+          },
+          {
+            "group": "Using jo",
+            "pages": [
+              "guides/first-queries",
+              "guides/managing-permissions",
+              "guides/cloud-integration",
+              "guides/keyboard-shortcuts"
+            ]
+          },
+          {
+            "group": "Data Sources",
+            "pages": [
+              "data-sources/files",
+              "data-sources/email",
+              "data-sources/browser-history",
+              "data-sources/messages",
+              "data-sources/notes"
+            ]
+          },
+          {
+            "group": "Advanced",
+            "pages": [
+              "advanced/performance",
+              "advanced/troubleshooting",
+              "advanced/data-management"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Support",
+        "groups": [
+          {
+            "group": "Help",
+            "pages": [
+              "support/faq",
+              "support/privacy-policy",
+              "support/terms-of-service"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Local AI search across files, emails, and browsing history",
+    "100% private - data never leaves your Mac",
+    "Hybrid cloud support - optional GPT, Claude, Gemini integration",
+    "Context-aware queries without copy-pasting",
+    "Powered by Apple M-series Neural Engine",
+    "Pay-per-use cloud models with no subscriptions"
+  ],
+  "publicApiSurface": [
+    "Local search queries",
+    "Email integration (IMAP)",
+    "Browser history indexing",
+    "File system indexing",
+    "Cloud model API integration (GPT, Claude, Gemini, Grok)",
+    "Permission management",
+    "Data source configuration"
+  ]
+}
