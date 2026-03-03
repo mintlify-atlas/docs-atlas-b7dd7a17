@@ -1,0 +1,324 @@
+---
+title: 'Messages'
+description: 'Search iMessage and SMS conversations with jo'
+icon: 'message'
+---
+
+## Overview
+
+jo integrates with Apple's Messages app (iMessage and SMS) to help you search conversations, find information people shared with you, and recall important details from chats. Instead of scrolling through years of messages, ask jo to find what you need using natural language.
+
+## How Messages Integration Works
+
+jo connects directly to your Mac's Messages database:
+
+- Reads message content, sender/recipient info, and timestamps
+- Indexes conversations, group chats, and attachments
+- Updates continuously as new messages arrive
+- All processing happens locally on your Mac
+
+<Note>
+jo uses read-only access to your Messages database. It cannot send messages, delete conversations, or modify your chat history.
+</Note>
+
+## What's Indexed
+
+jo indexes these elements from your Messages:
+
+### Message Content
+
+- **Text messages** — iMessage and SMS content
+- **Sender and recipient names** — Contact names and phone numbers/emails
+- **Timestamps** — When messages were sent and received
+- **Attachments** — Photos, videos, files, links, locations
+- **Reactions** — Hearts, likes, and other message reactions
+- **Group chat info** — Participant lists and group names
+
+### Message Metadata
+
+- Message threads and conversation context
+- Read/unread status (for context, not searchable)
+- Message type (iMessage, SMS, group chat)
+
+### What's NOT Indexed
+
+- **Deleted messages** — Once deleted from Messages, they're removed from jo
+- **Blocked contacts** — Messages from blocked numbers aren't indexed
+- **Messages from before indexing** — Only messages since you enabled jo are searchable
+
+<Info>
+jo indexes your complete Messages history by default, going back as far as your Mac stores messages. You can limit this in Settings → Messages → History Range.
+</Info>
+
+## Enabling Messages
+
+### Initial Setup
+
+1. Open jo Settings → Data Sources → Messages
+2. Click **Enable Messages**
+3. Grant permission when macOS prompts for Messages access:
+   - System Settings → Privacy & Security → Messages
+   - Enable access for jo
+4. jo begins indexing your message history
+
+**Initial indexing time**: 5-15 minutes for typical message history (10,000-50,000 messages)
+
+### Disabling Messages
+
+To stop indexing Messages:
+
+1. Open jo Settings → Data Sources → Messages
+2. Click **Disable Messages**
+3. Choose whether to delete indexed message data
+4. Revoke permission in System Settings → Privacy & Security → Messages
+
+## Privacy Controls
+
+jo provides detailed privacy controls for Messages:
+
+### Contact Exclusions
+
+Exclude specific contacts from being indexed:
+
+1. Settings → Messages → **Excluded Contacts**
+2. Select contacts to exclude
+3. jo will never index messages from these contacts
+
+**Use cases**:
+- Exclude private or sensitive conversations
+- Skip business contacts that don't need searching
+- Temporarily exclude contacts for privacy
+
+### Group Chat Controls
+
+Control which group chats are indexed:
+
+1. Settings → Messages → **Group Chats**
+2. View list of all group chats
+3. Disable indexing for specific groups
+
+### Attachment Handling
+
+Choose how jo handles message attachments:
+
+- **Index attachment metadata only** — File names and types (default)
+- **Index attachment content** — Extract text from images, PDFs, etc.
+- **Skip attachments entirely** — Only index text messages
+
+<Tip>
+Enabling "Index attachment content" lets jo search for text in photos (e.g., screenshots, documents) sent via Messages.
+</Tip>
+
+### Time Limits
+
+Control how far back jo indexes:
+
+- **Last 6 months**
+- **Last 1 year** (default)
+- **Last 2 years**
+- **All messages**
+
+Limiting time range reduces storage and speeds up searches.
+
+## Search Capabilities
+
+### Natural Language Queries
+
+Ask about messages like you'd ask a friend:
+
+- **"What did I tell Jake I'd send him?"** — Finds commitments you made
+- **"Did Mike ever send me that contractor's number?"** — Searches for specific info
+- **"What came out of my conversation with Sarah about the project?"** — Summarizes threads
+- **"Show me photos from the trip to Portland"** — Finds attachments by context
+
+### Conversation Context
+
+jo understands the flow of conversations:
+
+```
+You: "What did I tell Jake about the deadline?"
+jo: In your conversation with Jake Chen on March 12, you said:
+     "I'll have the draft to you by Friday, March 17th. Let me 
+     know if you need it sooner."
+     
+     Jake replied: "Friday works perfectly. Thanks!"
+```
+
+### Finding Shared Information
+
+jo tracks what people shared with you:
+
+```
+You: "What was that contractor Mike recommended for the deck?"
+jo: Based on your messages with Mike from March 2024, he 
+     recommended Tom Reilly at Reilly Decks (503-555-0147). 
+     Mike said Tom did his deck for $4,200 and finished in 3 days.
+```
+
+### Cross-Source Intelligence
+
+jo connects messages with other data:
+
+```
+You: "What did Sarah text me about the files she emailed?"
+jo: Sarah Chen sent you an iMessage on March 15 at 2:14 PM:
+     "Just sent you the budget and roadmap files via email. 
+     Let me know if you have questions!"
+     
+     The email arrived at 2:16 PM with two attachments:
+     • Budget_Draft_v3.xlsx
+     • Q2_Roadmap.pdf
+```
+
+## Example Queries
+
+Real ways users search Messages with jo:
+
+### Finding Specific Information
+
+- "What's Jake's address? He texted it to me last month"
+- "Show me the Zoom link Sarah sent yesterday"
+- "Find the recipe Mike shared in our group chat"
+
+### Tracking Commitments
+
+- "What did I promise to send to Rachel?"
+- "Did I ever respond to Kevin about meeting up?"
+- "Show me conversations where I said I'd do something"
+
+### Recalling Recommendations
+
+- "What restaurant did Amanda recommend in Austin?"
+- "Show me the book recommendations from my book club group"
+- "What podcast did Mike mention last week?"
+
+### Finding Shared Media
+
+- "Show me the photos Emma sent from the wedding"
+- "Find the video James shared about that tutorial"
+- "Where's that meme Alex sent about cats?"
+
+### Group Chat Searches
+
+- "What did the team decide in the group chat yesterday?"
+- "Show me when we planned the dinner in the family group"
+- "Find the discussion about vacation dates"
+
+### Time-Based Searches
+
+- "What did I message Sarah last Tuesday?"
+- "Show me conversations from my trip to New York"
+- "Find messages from December about holiday plans"
+
+## Performance and Storage
+
+### Initial Indexing
+
+When you first enable Messages:
+
+- **Time**: 5-15 minutes for 10,000-50,000 messages
+- **Impact**: About 10-15% CPU usage during indexing
+- **What's indexed**: Based on your time limit setting
+
+### Continuous Indexing
+
+After initial setup:
+
+- New messages are indexed within seconds
+- Background indexing uses minimal resources
+- jo monitors the Messages database for changes
+
+### Storage Requirements
+
+Message index size:
+
+- **Text only**: ~1-2KB per message
+- **With attachment metadata**: ~2-5KB per message with attachments
+- **With attachment content**: Varies by attachment size
+- **Example**: 10,000 messages ≈ 20-50MB index
+
+<Info>
+Attachments themselves aren't duplicated. jo only indexes metadata and optionally extracts text content.
+</Info>
+
+## Privacy and Security
+
+### Local Processing Only
+
+Your messages stay completely private:
+
+- **No cloud uploads** — Messages are indexed locally on your Mac
+- **Encrypted storage** — The local index is encrypted
+- **Read-only access** — jo cannot send, delete, or modify messages
+- **No external sharing** — Your conversations never leave your device
+
+### How jo Accesses Messages
+
+jo uses Apple's standard APIs:
+
+- Reads from the same Messages database as the Messages app
+- Requires explicit macOS permission (Privacy & Security settings)
+- You can revoke access anytime without affecting Messages app
+
+### Encryption
+
+iMessage end-to-end encryption is preserved:
+
+- jo only accesses messages after they're decrypted on your Mac
+- Messages remain encrypted during transmission
+- jo's local index is separately encrypted on disk
+
+<Warning>
+While jo processes messages locally, the indexed data is stored on your Mac. Use macOS security features (FileVault, strong password, Touch ID) to protect your device.
+</Warning>
+
+### Deleting Message Data
+
+To remove jo's message index:
+
+1. Settings → Messages → **Clear Message Index**
+2. Optionally disable Messages integration entirely
+3. Uninstalling jo also deletes all indexed message data
+
+## Troubleshooting
+
+### jo Can't Access Messages
+
+1. Check macOS permissions: System Settings → Privacy & Security → Messages
+2. Ensure "jo" is enabled in the list
+3. Restart jo after granting permission
+4. If issues persist, try removing and re-granting permission
+
+### Messages Not Appearing
+
+1. Verify the message is within your time limit (e.g., last 1 year)
+2. Check if the contact is in your Excluded Contacts list
+3. Ensure the message wasn't deleted from Messages app
+4. Try re-indexing: Settings → Messages → **Re-index Messages**
+
+### jo Can't Find a Message
+
+If you know a message exists but jo can't find it:
+
+1. Try different search phrases or keywords
+2. Include more context (sender's name, approximate date)
+3. Check if it's a group chat (try mentioning group name)
+4. Verify the message is synced to your Mac (iMessages sync across devices)
+
+### Group Chats Not Indexed
+
+1. Check Settings → Messages → **Group Chats** to see if it's disabled
+2. Ensure the group chat has messages within your time range
+3. Re-index if needed: Settings → Messages → **Re-index**
+
+### Attachments Not Searchable
+
+1. Enable attachment content indexing: Settings → Messages → **Attachment Handling**
+2. Select "Index attachment content"
+3. Re-index messages to process existing attachments
+
+## Related Data Sources
+
+- [Email](/data-sources/email) — Search email conversations
+- [Files](/data-sources/files) — Files mentioned or shared in messages
+- [Notes](/data-sources/notes) — Notes referencing message conversations

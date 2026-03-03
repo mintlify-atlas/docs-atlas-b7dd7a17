@@ -1,0 +1,216 @@
+---
+title: 'Files'
+description: 'How jo indexes and searches your local files'
+icon: 'folder'
+---
+
+## Overview
+
+jo indexes your local files to help you find documents, PDFs, and other files instantly using natural language queries. Instead of remembering exact file names or folder locations, you can ask jo to find files based on their content, topic, or context.
+
+## What File Types Does jo Index?
+
+jo supports a wide range of file formats commonly used on Mac:
+
+- **Documents**: `.txt`, `.rtf`, `.md`, `.pdf`, `.doc`, `.docx`
+- **Spreadsheets**: `.csv`, `.xls`, `.xlsx`, `.numbers`
+- **Presentations**: `.ppt`, `.pptx`, `.key`
+- **Code Files**: `.js`, `.py`, `.java`, `.swift`, `.html`, `.css`, and other common programming languages
+- **Images**: `.jpg`, `.png`, `.gif`, `.heic` (visual content and metadata)
+- **Archives**: `.zip`, `.tar`, `.gz` (file lists and metadata)
+
+<Note>
+jo indexes both file metadata (name, creation date, location) and file contents for supported text-based formats.
+</Note>
+
+## Where Does jo Look for Files?
+
+By default, jo searches these common locations on your Mac:
+
+<ParamField path="Documents" type="default">
+  Your primary documents folder (`~/Documents`)
+</ParamField>
+
+<ParamField path="Desktop" type="default">
+  Files and folders on your desktop (`~/Desktop`)
+</ParamField>
+
+<ParamField path="Downloads" type="default">
+  Your downloads folder (`~/Downloads`)
+</ParamField>
+
+<ParamField path="iCloud Drive" type="optional">
+  Files stored in iCloud Drive (if enabled in Settings)
+</ParamField>
+
+<ParamField path="Custom Folders" type="optional">
+  Additional folders you specify in jo's settings
+</ParamField>
+
+## Including and Excluding Directories
+
+### Adding Custom Directories
+
+To index additional folders:
+
+1. Open jo's settings (⌘,)
+2. Navigate to **Data Sources** → **Files**
+3. Click **Add Folder**
+4. Select the folder you want to index
+5. jo will begin indexing immediately
+
+### Excluding Directories
+
+You may want to exclude certain folders for privacy or performance:
+
+1. Open jo's settings (⌘,)
+2. Navigate to **Data Sources** → **Files**
+3. Click **Excluded Folders**
+4. Add folders to exclude (e.g., `node_modules`, `.git`, temporary folders)
+
+<Info>
+Excluding large folders like `node_modules` or build directories can significantly improve indexing performance and reduce storage usage.
+</Info>
+
+### Common Exclusions
+
+Consider excluding these folders:
+
+- Development build folders (`node_modules`, `vendor`, `build`, `dist`)
+- Version control folders (`.git`, `.svn`)
+- System folders (`Library`, `System`)
+- Large media projects that don't need text search
+
+## Search Capabilities
+
+### Natural Language Queries
+
+Instead of remembering exact file names, ask jo naturally:
+
+- **"Where's that W-9 from my accountant?"** — Finds tax documents by content
+- **"Find the presentation about Q4 goals"** — Searches slide deck contents
+- **"What's in my competitor research folder?"** — Summarizes folder contents
+- **"Show me PDFs from last month"** — Filters by file type and date
+
+### Content-Based Search
+
+jo understands the meaning within your files:
+
+```
+You: "Find that contract with the termination clause"
+jo: Found "Consulting_Agreement_2024.pdf" in ~/Documents/Contracts/
+     The document includes termination terms in Section 7, allowing 
+     either party to terminate with 30 days written notice.
+```
+
+### Cross-Source Intelligence
+
+jo can connect files with other data sources:
+
+```
+You: "What files did Sarah mention in her email last week?"
+jo: Sarah Chen referenced these files in her email on March 15:
+     • Budget_Draft_v3.xlsx (attached to email)
+     • Marketing_Plan.pdf (mentioned, found in ~/Documents/Projects)
+```
+
+## Privacy and Security
+
+### Local Processing
+
+All file indexing happens entirely on your Mac:
+
+- File contents never leave your computer
+- Indexed data is stored in a local database
+- No cloud uploads or external processing
+
+### Permissions
+
+jo uses Apple's native APIs to access files:
+
+- You grant file access when you first set up jo
+- You can revoke access at any time in System Settings
+- jo only reads files you've explicitly allowed
+
+### Sensitive Files
+
+For files containing sensitive information:
+
+1. Use the **Excluded Folders** feature to skip entire directories
+2. Or add specific file patterns to ignore (e.g., `*_private.pdf`)
+
+<Warning>
+While jo runs locally, remember that it indexes file contents. If you have sensitive documents, consider excluding those folders entirely.
+</Warning>
+
+## Performance Considerations
+
+### Initial Indexing
+
+- **Time**: 5-15 minutes for typical Mac with 50,000-100,000 files
+- **Impact**: Uses about 10-20% CPU during initial indexing
+- **Storage**: Index requires approximately 1-2% of your total file size
+
+### Continuous Indexing
+
+After the initial index:
+
+- jo monitors for file changes in real-time
+- New files are indexed within seconds
+- Background indexing uses minimal resources
+
+### Optimizing Performance
+
+<Tip>
+Exclude large folders that don't need searching (like video projects or development dependencies) to speed up indexing and save storage.
+</Tip>
+
+## Example Queries
+
+Here are real examples of how users search for files with jo:
+
+### Finding Documents by Content
+
+- "Show me contracts that expire this year"
+- "Find the budget spreadsheet with the marketing breakdown"
+- "Where's that PDF about remote work policies?"
+
+### Finding Files by Context
+
+- "What files did I work on yesterday?"
+- "Show me documents related to the website redesign"
+- "Find files from that consulting project"
+
+### Cross-Reference Searches
+
+- "Which files are mentioned in my notes about the conference?"
+- "Show me the attachments from Mike's emails last month"
+- "What documents are tagged with 'urgent' in my notes?"
+
+## Troubleshooting
+
+### jo Can't Find a File
+
+1. Check if the folder is in your indexed locations
+2. Verify the folder isn't in your Excluded Folders list
+3. Try re-indexing: Settings → Files → **Re-index Files**
+
+### Indexing is Slow
+
+1. Check how many files are being indexed (Settings → Files → **Statistics**)
+2. Consider excluding large folders like `node_modules`
+3. Ensure you have at least 2GB of free disk space
+
+### File Changes Not Appearing
+
+jo monitors files in real-time, but occasionally:
+
+1. Force a refresh: Settings → Files → **Refresh Index**
+2. Restart jo if the issue persists
+3. Check System Settings → Privacy & Security → Files and Folders
+
+## Related Data Sources
+
+- [Browser History](/data-sources/browser-history) — Find pages where you downloaded files
+- [Email](/data-sources/email) — Search file attachments in your inbox
+- [Notes](/data-sources/notes) — Files referenced in your notes

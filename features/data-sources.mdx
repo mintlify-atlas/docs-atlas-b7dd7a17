@@ -1,0 +1,231 @@
+---
+title: Data sources
+description: Overview of all data sources jo can access and how indexing works
+---
+
+jo connects to your Mac's native apps to give you AI-powered search across everything you work with. You control exactly what jo can see.
+
+## Available data sources
+
+jo can index the following data sources on your Mac:
+
+### Native apps
+
+<CardGroup cols={2}>
+  <Card title="Notes" icon="note-sticky">
+    All your Apple Notes, including folders, tags, and attachments
+  </Card>
+  <Card title="Photos" icon="image">
+    Your entire Photos library with dates, locations, and visual content
+  </Card>
+  <Card title="Mail" icon="envelope">
+    Email via IMAP access to your configured mail accounts
+  </Card>
+  <Card title="Messages" icon="message">
+    iMessage, SMS, and connected messaging apps on your Mac
+  </Card>
+  <Card title="Calendar" icon="calendar">
+    Events, meetings, and calendar entries
+  </Card>
+  <Card title="Files" icon="folder">
+    Local files in your specified directories
+  </Card>
+  <Card title="Reminders" icon="check">
+    Tasks and reminder lists
+  </Card>
+  <Card title="Contacts" icon="address-book">
+    Your contact information and details
+  </Card>
+</CardGroup>
+
+### Messaging apps
+
+jo connects to messaging apps running on your Mac:
+
+- **iMessage:** Native integration with Messages app
+- **WhatsApp:** Via WhatsApp Desktop on Mac
+- **Telegram:** Via Telegram Desktop on Mac
+
+<Info>
+  **Groupchat summaries:** Ask "catch me up on the family chat" and jo summarizes key points, decisions, and anything that needs your attention. All processing happens locally.
+</Info>
+
+### Browser history
+
+jo can index your browser history to help you find:
+- Pages you visited but didn't bookmark
+- Research you started but didn't finish
+- Products or services you were considering
+
+## How indexing works
+
+jo uses the same APIs that Apple's own apps use to access your data. This is the same secure method Spotlight uses.
+
+### Initial setup
+
+1. **Download jo:** Drag to Applications folder
+2. **Grant permissions:** You choose which apps jo can access
+3. **Wait 10 minutes:** jo reads through your history
+4. **Start asking:** jo is ready to help
+
+<Info>
+  Everything stays on your Mac during indexing. jo processes all data locally and never uploads anything to external servers.
+</Info>
+
+### Continuous indexing
+
+After the initial setup, jo continuously indexes new content in the background:
+
+- **New emails** are indexed as they arrive
+- **New notes** are indexed when you create them
+- **New photos** are indexed when you import them
+- **New messages** are indexed in real-time
+
+<Tip>
+  You won't notice jo running. It uses your Mac's Neural Engine, which is dedicated AI hardware that normally sits idle, so it won't slow down your other work.
+</Tip>
+
+## What jo can see
+
+jo only sees what you give it permission to access. During setup, you explicitly grant permissions for each data source.
+
+### Granular control
+
+You can control:
+
+- Which apps jo can access
+- Which folders or directories to include/exclude
+- Which email accounts to index
+- Which messaging apps to connect
+
+<Warning>
+  jo reads your actual files using Apple's native APIs. It doesn't take screenshots or record your screen like some alternatives do.
+</Warning>
+
+## What jo can't see
+
+jo has the same limitations as any other Mac app:
+
+### Encrypted content
+
+- Password-protected files remain protected
+- Encrypted email attachments aren't accessible
+- Locked notes in Apple Notes aren't indexed
+
+### Apps without access
+
+jo can only access:
+- Native Mac apps with public APIs
+- Messaging apps running on your Mac
+- Files you've granted permission to read
+
+jo cannot access:
+- Web apps that don't store data locally
+- Cloud-only services without local copies
+- System files or other users' data
+
+### Privacy boundaries
+
+<Info>
+  **By design:** jo respects macOS's built-in privacy protections. If an app requires special permissions, macOS will ask you to approve it.
+</Info>
+
+## Data storage
+
+All indexed data is stored locally on your Mac.
+
+### How data is stored
+
+- **Encrypted database:** jo creates an encrypted index on your Mac
+- **Local only:** Nothing is uploaded to external servers
+- **Fast access:** Local storage means instant search results
+
+### Storage requirements
+
+The index size depends on how much data you have:
+
+- **Average user:** 2-5 GB for the index
+- **Power user:** 5-15 GB for extensive email/photo libraries
+- **Requirements:** M1 or newer Mac with 16GB RAM
+
+<Tip>
+  jo's index is much smaller than your actual data because it stores semantic representations, not full copies of your files.
+</Tip>
+
+## Removing data sources
+
+You can disconnect data sources at any time:
+
+1. Open jo preferences
+2. Go to Data Sources
+3. Toggle off any source you want to remove
+4. jo will remove that data from its index
+
+<Info>
+  **Removing jo:** If you uninstall jo, all indexed data is deleted with it. Your original files in Notes, Photos, Mail, etc. remain untouched.
+</Info>
+
+## Email access (IMAP)
+
+jo accesses email using IMAP, the same protocol used by Mail.app.
+
+### Supported email providers
+
+- Gmail
+- Outlook/Microsoft 365
+- iCloud Mail
+- Any IMAP-compatible email service
+
+### What's indexed from email
+
+- Subject lines
+- Sender and recipient information
+- Email body text
+- Date and time
+- Thread conversations
+
+<Warning>
+  **Attachments:** jo indexes attachment names and types, but doesn't download or store the full attachment content unless the file is already local.
+</Warning>
+
+## Technical details
+
+### How jo accesses data
+
+jo uses Apple's native frameworks:
+
+- **EventKit** for Calendar access
+- **Contacts framework** for Contacts
+- **Photos framework** for Photos library
+- **Notes framework** for Apple Notes
+- **IMAP protocol** for Mail
+- **SQLite databases** for Messages (read-only)
+
+<Info>
+  **Verifiable architecture:** jo uses Apple's native APIs (same as Spotlight). We can't access your data even if we wanted to. Security researchers can verify our claims.
+</Info>
+
+### Network activity
+
+jo does not make network calls for your data:
+
+- **Zero outbound connections** for content
+- **All processing on-device** using your Neural Engine
+- **No cloud uploads** of personal data
+
+<Tip>
+  **Verify it yourself:** Open Activity Monitor while using jo. You'll see zero outbound connections to external servers for your content.
+</Tip>
+
+## System requirements
+
+To index and search your data, jo requires:
+
+- Mac with M-series chip (M1, M2, M3, M4)
+- 16GB of RAM
+- macOS Sonoma or later
+- 5-20 GB free disk space (for index)
+
+<Info>
+  **Why M-series?** Apple's M-series chips have a Neural Engine that makes local AI fast and efficient. jo uses this dedicated AI hardware to run models directly on your Mac.
+</Info>

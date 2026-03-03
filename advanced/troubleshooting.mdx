@@ -1,0 +1,488 @@
+---
+title: "Troubleshooting"
+description: "Solutions to common issues with permissions, indexing, cloud models, and general troubleshooting steps"
+---
+
+## Common issues
+
+This guide covers the most frequently encountered issues and their solutions.
+
+## Permissions problems
+
+### Full Disk Access not granted
+
+<Accordion title="Symptom: jo can't index files or shows 'Permission denied' errors">
+
+**Solution:**
+
+jo requires Full Disk Access to index your files, emails, and browser history.
+
+<Steps>
+
+<Step title="Open System Settings">
+Go to Apple menu > System Settings > Privacy & Security > Full Disk Access
+</Step>
+
+<Step title="Add jo to the list">
+Click the + button and navigate to Applications > jo. Select jo and click Open.
+</Step>
+
+<Step title="Enable the toggle">
+Ensure the toggle next to jo is turned ON.
+</Step>
+
+<Step title="Restart jo">
+Quit jo completely (Cmd+Q) and relaunch it.
+</Step>
+
+</Steps>
+
+<Note>
+macOS may require you to enter your admin password to grant Full Disk Access.
+</Note>
+
+</Accordion>
+
+### Email access issues
+
+<Accordion title="Symptom: Can't connect to email or inbox not indexing">
+
+**Common causes:**
+
+1. **App-specific password required**: Gmail, Outlook, and iCloud require app-specific passwords instead of your regular password
+2. **IMAP not enabled**: Some email providers disable IMAP by default
+3. **Firewall blocking connection**: Corporate or home firewalls may block IMAP ports
+
+**Solutions:**
+
+<Steps>
+
+<Step title="Generate app-specific password">
+**For Gmail:**
+- Go to Google Account > Security > 2-Step Verification > App passwords
+- Generate a password for "Mail" and "Mac"
+- Use this password in jo instead of your regular password
+
+**For Outlook/Microsoft:**
+- Go to account.microsoft.com > Security > Advanced security options
+- Under "App passwords", create a new password
+- Use this in jo's email settings
+
+**For iCloud:**
+- Go to appleid.apple.com > Sign-In and Security > App-Specific Passwords
+- Generate a new password labeled "jo"
+- Use this in jo's configuration
+</Step>
+
+<Step title="Enable IMAP">
+**Gmail**: Settings > Forwarding and POP/IMAP > Enable IMAP
+
+**Outlook**: Settings > Mail > Sync email > Enable IMAP
+
+**iCloud**: IMAP is enabled by default
+</Step>
+
+<Step title="Check firewall settings">
+Ensure ports 993 (IMAP SSL) and 587 (SMTP) are not blocked in your firewall settings.
+</Step>
+
+<Step title="Test connection">
+In jo, go to Settings > Data Sources > Email > Test Connection to verify.
+</Step>
+
+</Steps>
+
+</Accordion>
+
+### Browser history access
+
+<Accordion title="Symptom: Browser history not appearing in jo">
+
+**Solution:**
+
+<Steps>
+
+<Step title="Grant Full Disk Access">
+Browser history requires Full Disk Access (see above).
+</Step>
+
+<Step title="Check browser compatibility">
+jo supports:
+- Safari (fully supported)
+- Chrome (fully supported)
+- Firefox (fully supported)
+- Brave (fully supported)
+- Arc (fully supported)
+</Step>
+
+<Step title="Verify browser is closed">
+Some browsers lock their history database while running. Close your browser and let jo re-index.
+</Step>
+
+<Step title="Re-enable browser history indexing">
+Go to Settings > Data Sources > Browser History and toggle your browser on/off.
+</Step>
+
+</Steps>
+
+</Accordion>
+
+## Indexing issues
+
+### Indexing stuck or frozen
+
+<Accordion title="Symptom: Indexing progress not advancing">
+
+**Diagnosis:**
+
+Check Settings > Data Sources > Indexing Status to see which source is stuck.
+
+**Solutions:**
+
+<Steps>
+
+<Step title="Identify problematic files">
+Look for patterns:
+- Very large files (>1GB)
+- Corrupted files
+- Network drives that disconnected
+- Files with special characters or encoding issues
+</Step>
+
+<Step title="Exclude problematic paths">
+In Settings > Data Sources > [Source] > Exclusions, add paths causing issues.
+</Step>
+
+<Step title="Restart indexing">
+In Settings > Data Sources > [Source] > Actions > Restart Indexing
+</Step>
+
+<Step title="Check available disk space">
+Ensure you have at least 5GB free space. Jo needs temporary space during indexing.
+</Step>
+
+</Steps>
+
+<Warning>
+If indexing remains stuck after these steps, see "Reset index" in the Data Management section.
+</Warning>
+
+</Accordion>
+
+### Indexing too slow
+
+<Accordion title="Symptom: Indexing taking much longer than expected">
+
+**Common causes:**
+- Indexing large volumes of data (100,000+ files)
+- Low memory availability (less than 8GB free)
+- Files on slow external drives
+- Background system tasks competing for resources
+
+**Solutions:**
+
+<Steps>
+
+<Step title="Prioritize sources">
+In Settings > Data Sources, disable less important sources temporarily. Index critical folders first.
+</Step>
+
+<Step title="Schedule indexing">
+Settings > Indexing > Schedule: Set indexing to occur during off-hours or when Mac is plugged in.
+</Step>
+
+<Step title="Close resource-heavy apps">
+Quit video editing, gaming, or other memory-intensive applications while indexing.
+</Step>
+
+<Step title="Use internal storage">
+If possible, copy frequently-accessed files to your internal SSD for faster indexing.
+</Step>
+
+</Steps>
+
+</Accordion>
+
+### Missing recent files
+
+<Accordion title="Symptom: New files not appearing in jo">
+
+**Check:**
+
+1. File modification time (jo indexes based on modification, not creation date)
+2. File location is included in indexed paths
+3. File type is not excluded (Settings > Data Sources > File Types)
+
+**Force re-index:**
+
+<Steps>
+
+<Step title="Navigate to source settings">
+Settings > Data Sources > Files > [Specific folder]
+</Step>
+
+<Step title="Click 'Re-index this folder'">
+This forces jo to scan for changes immediately.
+</Step>
+
+<Step title="Wait for completion">
+Small folders re-index in seconds; large folders may take minutes.
+</Step>
+
+</Steps>
+
+</Accordion>
+
+## Cloud model connection issues
+
+### API key errors
+
+<Accordion title="Symptom: 'Invalid API key' or 'Authentication failed'">
+
+**Solution:**
+
+<Steps>
+
+<Step title="Verify API key">
+Log into your provider's dashboard:
+- OpenAI: platform.openai.com/api-keys
+- Anthropic (Claude): console.anthropic.com/settings/keys
+- Google (Gemini): makersuite.google.com/app/apikey
+
+Confirm your key is active and not expired.
+</Step>
+
+<Step title="Re-enter key in jo">
+Settings > Cloud Models > [Provider] > API Key
+
+Copy-paste the key carefully (no extra spaces).
+</Step>
+
+<Step title="Check billing status">
+Ensure your provider account has payment information and available credits.
+</Step>
+
+<Step title="Test connection">
+Click "Test Connection" to verify before using in queries.
+</Step>
+
+</Steps>
+
+</Accordion>
+
+### Rate limiting
+
+<Accordion title="Symptom: 'Rate limit exceeded' or '429 Too Many Requests'">
+
+**Cause:** API providers limit requests per minute/hour.
+
+**Solution:**
+
+<Steps>
+
+<Step title="Wait before retrying">
+Rate limits typically reset within 1-5 minutes. Jo will automatically retry.
+</Step>
+
+<Step title="Reduce query frequency">
+If hitting limits frequently, space out queries or batch your questions.
+</Step>
+
+<Step title="Upgrade provider tier">
+Consider upgrading your API plan for higher rate limits:
+- OpenAI: platform.openai.com/account/billing
+- Anthropic: console.anthropic.com/settings/plans
+</Step>
+
+</Steps>
+
+</Accordion>
+
+### Slow cloud responses
+
+<Accordion title="Symptom: Cloud queries taking 10+ seconds">
+
+**Diagnosis:**
+
+<Steps>
+
+<Step title="Check network speed">
+Run a speed test. You need at least 5 Mbps upload for smooth streaming.
+</Step>
+
+<Step title="Verify API region">
+Settings > Cloud Models > [Provider] > Region
+
+Select the region closest to you.
+</Step>
+
+<Step title="Reduce context size">
+Large context from your index increases processing time. In Settings > Cloud Models > Context, reduce "Max context documents" from 20 to 10.
+</Step>
+
+</Steps>
+
+</Accordion>
+
+## General troubleshooting
+
+### jo won't launch
+
+<Accordion title="Symptom: jo crashes on startup or doesn't open">
+
+**Solutions:**
+
+<Steps>
+
+<Step title="Check system requirements">
+Verify you have:
+- Mac with M-series chip (M1, M2, M3, or M4)
+- macOS 12.0 or later
+- 16GB RAM minimum
+</Step>
+
+<Step title="Restart your Mac">
+Sometimes macOS services need to be refreshed.
+</Step>
+
+<Step title="Re-download jo">
+Download the latest version from askjo.ai and replace the existing app.
+</Step>
+
+<Step title="Check Console.app for errors">
+Open Console.app, search for "jo", and look for crash reports or error messages. These can help identify specific issues.
+</Step>
+
+</Steps>
+
+<Warning>
+If jo continues to crash, see "Complete uninstall" in Data Management to do a clean reinstall.
+</Warning>
+
+</Accordion>
+
+### High CPU usage
+
+<Accordion title="Symptom: jo consuming >50% CPU when idle">
+
+**Normal scenarios:**
+- Initial indexing (CPU usage 40-80%)
+- Background re-indexing after system wake
+- Processing large query results
+
+**If sustained when idle:**
+
+<Steps>
+
+<Step title="Check indexing status">
+Settings > Data Sources > Indexing Status
+
+Ensure no tasks are stuck in a loop.
+</Step>
+
+<Step title="Restart jo">
+Quit completely (Cmd+Q) and relaunch.
+</Step>
+
+<Step title="Reduce monitoring frequency">
+Settings > Data Sources > Advanced > File Monitoring
+
+Change from "Real-time" to "Every 5 minutes" to reduce background activity.
+</Step>
+
+</Steps>
+
+</Accordion>
+
+### Search results not relevant
+
+<Accordion title="Symptom: jo returning unrelated or outdated results">
+
+**Causes:**
+- Index out of sync with file system
+- Query too vague
+- Ranking algorithm not tuned
+
+**Solutions:**
+
+<Steps>
+
+<Step title="Re-index affected sources">
+Settings > Data Sources > [Source] > Re-index
+</Step>
+
+<Step title="Use more specific queries">
+Instead of: "project files"
+Try: "Acme Corp proposal PDF from last week"
+</Step>
+
+<Step title="Adjust relevance settings">
+Settings > Search > Relevance
+
+Increase weight for recent files or specific file types.
+</Step>
+
+<Step title="Use filters">
+Specify source: "in my email", "in Documents folder"
+Add dates: "since January", "last month"
+</Step>
+
+</Steps>
+
+</Accordion>
+
+## Getting more help
+
+### Check system status
+
+Settings > Advanced > System Diagnostics provides detailed info:
+
+- Index health
+- Memory and disk usage
+- Recent errors
+- Performance metrics
+
+Export this report when contacting support.
+
+### Enable debug logging
+
+<Steps>
+
+<Step title="Enable debug mode">
+Settings > Advanced > Debug Logging > Enable
+</Step>
+
+<Step title="Reproduce the issue">
+Perform the action that's causing problems.
+</Step>
+
+<Step title="Export logs">
+Settings > Advanced > Debug Logging > Export Logs
+
+Save the file and attach when reporting issues.
+</Step>
+
+<Step title="Disable debug mode">
+Debug logging increases disk usage. Turn it off after capturing logs.
+</Step>
+
+</Steps>
+
+### Contact support
+
+If issues persist:
+
+- Email: support@askjo.ai
+- Include: System Diagnostics report, debug logs (if enabled), and description of the issue
+- Expected response: Within 24-48 hours
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Performance" icon="gauge-high" href="/advanced/performance">
+    Optimize jo for speed and efficiency
+  </Card>
+  <Card title="Data management" icon="database" href="/advanced/data-management">
+    Manage storage and backups
+  </Card>
+</CardGroup>

@@ -1,0 +1,316 @@
+---
+title: 'Email'
+description: 'Connect your email accounts via IMAP and search your inbox with natural language'
+icon: 'envelope'
+---
+
+## Overview
+
+jo connects to your email accounts via IMAP to help you find messages, attachments, and conversations without endless scrolling or folder hunting. Ask jo about emails naturally, and it finds what you need — even if you don't remember exact words or dates.
+
+## How Email Integration Works
+
+jo uses **IMAP** (Internet Message Access Protocol) to connect to your email accounts:
+
+- Securely reads your email messages and metadata
+- Indexes email content, subjects, senders, and attachments
+- Updates continuously as new emails arrive
+- All processing happens locally on your Mac
+
+<Note>
+jo uses read-only IMAP access. It cannot send emails, move messages to folders, or modify your mailbox.
+</Note>
+
+## Supported Email Providers
+
+jo works with any email provider that supports IMAP, including:
+
+### Fully Supported
+
+<ParamField path="Gmail" type="supported">
+  Google's email service. Requires enabling IMAP and generating an app-specific password.
+</ParamField>
+
+<ParamField path="iCloud Mail" type="supported">
+  Apple's email service. Works seamlessly with your iCloud account.
+</ParamField>
+
+<ParamField path="Outlook.com / Office 365" type="supported">
+  Microsoft email accounts. Requires enabling IMAP in account settings.
+</ParamField>
+
+<ParamField path="Yahoo Mail" type="supported">
+  Yahoo email accounts. Requires generating an app password.
+</ParamField>
+
+### Custom IMAP Servers
+
+<ParamField path="Custom Domains" type="supported">
+  Any email hosted on a custom domain with IMAP access (e.g., Fastmail, ProtonMail Bridge, company email servers)
+</ParamField>
+
+<Info>
+If your email provider supports IMAP, jo can connect to it. Check your provider's documentation for IMAP settings.
+</Info>
+
+## Connecting Your Email
+
+### Gmail Setup
+
+1. **Enable IMAP in Gmail**:
+   - Go to Gmail Settings → Forwarding and POP/IMAP
+   - Select "Enable IMAP"
+   - Save changes
+
+2. **Generate an App Password**:
+   - Visit [Google App Passwords](https://myaccount.google.com/apppasswords)
+   - Create a new app password for "Mail"
+   - Copy the 16-character password
+
+3. **Connect in jo**:
+   - Open jo Settings → Data Sources → Email
+   - Click **Add Email Account**
+   - Select **Gmail**
+   - Enter your email address and the app password
+   - Click **Connect**
+
+### iCloud Mail Setup
+
+1. **Generate an App-Specific Password**:
+   - Go to [appleid.apple.com](https://appleid.apple.com)
+   - Sign in and navigate to Security
+   - Under "App-Specific Passwords", click **Generate Password**
+   - Name it "jo" and copy the password
+
+2. **Connect in jo**:
+   - Open jo Settings → Data Sources → Email
+   - Click **Add Email Account**
+   - Select **iCloud Mail**
+   - Enter your iCloud email and app-specific password
+   - Click **Connect**
+
+### Outlook / Office 365 Setup
+
+1. **Enable IMAP** (if needed):
+   - Go to Outlook.com Settings → View all Outlook settings
+   - Navigate to Mail → Sync email
+   - Ensure IMAP is enabled
+
+2. **Connect in jo**:
+   - Open jo Settings → Data Sources → Email
+   - Click **Add Email Account**
+   - Select **Outlook**
+   - Enter your Microsoft email and password
+   - Click **Connect**
+
+### Custom IMAP Server
+
+For other providers:
+
+1. Get IMAP settings from your email provider (server, port, security)
+2. Open jo Settings → Data Sources → Email
+3. Click **Add Email Account** → **Custom IMAP**
+4. Enter your email, password, and IMAP server details
+5. Click **Connect**
+
+<Warning>
+Always use app-specific passwords when available. Never enter your main account password into third-party apps.
+</Warning>
+
+## What jo Indexes
+
+jo indexes these email components:
+
+- **Subject lines** — The email's subject
+- **Body content** — Full message text (plain text and HTML)
+- **Sender and recipients** — From, To, CC, BCC addresses
+- **Dates and times** — When emails were sent and received
+- **Attachments** — File names, types, and content (for supported formats)
+- **Thread context** — Related emails in a conversation
+
+### What's NOT Indexed
+
+- Email folder structure (all emails are searchable regardless of folder)
+- Read/unread status
+- Labels or tags (provider-specific)
+- Spam or trash folders (automatically excluded)
+
+## Privacy Considerations
+
+### Local Processing Only
+
+Your email data stays private:
+
+- **No cloud uploads**: Emails are indexed locally on your Mac
+- **Encrypted storage**: The local index is encrypted on disk
+- **No external sharing**: jo never sends your emails to external servers
+- **Read-only access**: jo cannot send, delete, or modify emails
+
+### Email Credentials
+
+How jo handles your login information:
+
+- Credentials are stored in your Mac's Keychain (Apple's secure password manager)
+- jo uses app-specific passwords, not your main account password
+- You can disconnect accounts anytime without affecting your email
+
+<Info>
+When you use jo to search emails, the AI processing happens entirely on your Mac's Neural Engine. Your messages never leave your device.
+</Info>
+
+### Revoking Access
+
+To remove jo's access to your email:
+
+1. In jo: Settings → Data Sources → Email → **Remove Account**
+2. In your email provider: Revoke the app-specific password
+3. jo will delete all indexed email data from your Mac
+
+## Search Capabilities
+
+### Natural Language Queries
+
+Ask about emails like you'd ask a person:
+
+- **"Did my landlord ever get back to me about the leak?"** — Finds emails by topic
+- **"Catch me up on my emails with the accountant"** — Summarizes recent conversations
+- **"What did Sarah say about the deadline?"** — Searches sender and content
+- **"Show me emails with receipts from last month"** — Filters by attachments and date
+
+### Content Understanding
+
+jo understands meaning, not just keywords:
+
+```
+You: "Find that email about money problems"
+jo: Found your conversation with Mike Chen from March 12 about 
+     budget constraints for the Q2 project. He mentioned the 
+     finance team cutting discretionary spending by 15%.
+```
+
+Even though you said "money problems," jo understood you meant budget discussions.
+
+### Conversation Context
+
+jo keeps track of email threads:
+
+```
+You: "What came out of my conversation with the contractor?"
+jo: Based on your email thread with Tom Reilly (March 10-15):
+     • He quoted $4,200 for the deck project
+     • Timeline: 3 days once materials arrive
+     • He'll send the contract by Friday
+     • You agreed to the quote on March 15
+```
+
+### Cross-Source Intelligence
+
+jo connects emails with other data:
+
+```
+You: "What files did Sarah email me last week?"
+jo: Sarah Chen sent you these attachments on March 15:
+     • Budget_Draft_v3.xlsx (25KB)
+     • Q2_Roadmap.pdf (1.2MB)
+     Both files are now in your Downloads folder.
+```
+
+## Example Queries
+
+Real ways users search email with jo:
+
+### Finding Specific Emails
+
+- "Where's that confirmation email from Airbnb?"
+- "Show me the email with the Zoom link for tomorrow"
+- "Find the message where Jake sent me his phone number"
+
+### Summarizing Conversations
+
+- "Catch me up on emails from my boss this week"
+- "What's the status of the hiring process based on my emails?"
+- "Summarize my conversation with the insurance company"
+
+### Finding Attachments
+
+- "Show me PDFs from the accountant"
+- "Where's that invoice Sarah sent last month?"
+- "Find emails with presentation attachments"
+
+### Time-Based Searches
+
+- "What emails did I get yesterday afternoon?"
+- "Show me unread emails from this morning"
+- "Find emails from March about the project"
+
+### Topic-Based Searches
+
+- "Show me all emails about the website redesign"
+- "Find travel confirmations from last year"
+- "What have clients said about the new feature?"
+
+## Performance and Storage
+
+### Initial Sync
+
+When you first connect an email account:
+
+- **Time**: 10-30 minutes for 10,000-50,000 emails
+- **What's synced**: Last 2 years of email by default (configurable)
+- **Resource usage**: About 10-20% CPU during initial sync
+
+### Ongoing Sync
+
+After the initial sync:
+
+- New emails are indexed within seconds of arrival
+- Background sync uses minimal resources
+- jo checks for new mail every 60 seconds
+
+### Storage Requirements
+
+The email index requires storage:
+
+- Approximately 1-2% of your total email size
+- Example: 10GB of email = ~100-200MB index
+- Attachments are not duplicated (only metadata is indexed)
+
+<Tip>
+Adjust how far back jo syncs email in Settings → Email → Sync History. Limiting to 1 year can save storage and speed up searches.
+</Tip>
+
+## Troubleshooting
+
+### Connection Failed
+
+1. Verify IMAP is enabled in your email provider's settings
+2. Check that you're using an app-specific password (not your main password)
+3. Ensure your firewall isn't blocking IMAP connections
+4. Try disconnecting and reconnecting the account
+
+### Emails Not Appearing
+
+1. Check the sync status: Settings → Email → **Sync Status**
+2. Verify the email is within your sync history range
+3. Force a refresh: Settings → Email → **Sync Now**
+
+### jo Can't Find an Email
+
+If you know an email exists but jo can't find it:
+
+1. Try searching with different keywords or phrases
+2. Check if the email is in a spam or archive folder (may not be indexed)
+3. Verify the email is within your sync date range
+4. Re-index: Settings → Email → **Re-index Emails**
+
+### Slow Search Results
+
+1. Check if initial sync is still running (Settings → Email)
+2. Ensure you have at least 2GB of free disk space
+3. Try limiting sync history to reduce index size
+
+## Related Data Sources
+
+- [Files](/data-sources/files) — Search email attachments saved to disk
+- [Notes](/data-sources/notes) — Notes that reference email content
+- [Messages](/data-sources/messages) — Search conversations across platforms

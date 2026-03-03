@@ -1,0 +1,364 @@
+---
+title: 'Notes'
+description: 'Search Apple Notes with natural language and intelligent organization'
+icon: 'note-sticky'
+---
+
+## Overview
+
+jo integrates with Apple Notes to help you search, organize, and rediscover your notes instantly. Instead of manually browsing folders or trying to remember exact phrases, ask jo to find notes by topic, content, or context — even if you only vaguely remember what you wrote.
+
+## How Notes Integration Works
+
+jo connects directly to your Apple Notes database:
+
+- Reads note content, titles, and metadata
+- Indexes text, attachments, checklists, and tables
+- Updates in real-time as you create or edit notes
+- Respects locked notes (does not index password-protected notes)
+- All processing happens locally on your Mac
+
+<Note>
+jo uses read-only access to your Notes database. It cannot create, edit, or delete notes.
+</Note>
+
+## What's Indexed
+
+jo indexes these elements from Apple Notes:
+
+### Note Content
+
+- **Note text** — All written content in your notes
+- **Note titles** — The first line or explicit title
+- **Attachments** — Images, PDFs, files, sketches (metadata and optionally content)
+- **Checklists** — To-do items and their completion status
+- **Tables** — Structured data within notes
+- **Links** — URLs and references to other notes
+
+### Note Metadata
+
+- **Creation date** — When the note was first created
+- **Modification date** — When the note was last edited
+- **Folder location** — Which folder the note is in
+- **Tags** — System tags and hashtags within notes (#project, #important, etc.)
+- **Shared notes** — Notes shared with other iCloud users (if enabled)
+
+### What's NOT Indexed
+
+- **Locked notes** — Password-protected notes are never indexed
+- **Recently deleted notes** — Notes in the Recently Deleted folder are excluded
+- **Notes from disabled accounts** — If you have multiple iCloud accounts
+
+<Info>
+jo respects Apple Notes' security. Locked (password-protected) notes are never indexed, even if you unlock them while jo is running.
+</Info>
+
+## Enabling Notes
+
+### Initial Setup
+
+1. Open jo Settings → Data Sources → Notes
+2. Click **Enable Notes**
+3. Grant permission when macOS prompts for Notes access:
+   - System Settings → Privacy & Security → Notes
+   - Enable access for jo
+4. jo begins indexing your notes immediately
+
+**Initial indexing time**: 3-10 minutes for typical note collections (1,000-5,000 notes)
+
+### Disabling Notes
+
+To stop indexing Notes:
+
+1. Open jo Settings → Data Sources → Notes
+2. Click **Disable Notes**
+3. Choose whether to delete indexed note data
+4. Revoke permission in System Settings → Privacy & Security → Notes
+
+## Privacy Controls
+
+jo provides granular privacy controls for your notes:
+
+### Folder Exclusions
+
+Exclude entire folders from being indexed:
+
+1. Settings → Notes → **Excluded Folders**
+2. Select folders to exclude (e.g., "Private", "Drafts", "Personal")
+3. jo will never index notes in these folders
+
+**Common exclusions**:
+- Personal journal folders
+- Sensitive financial notes
+- Private health information
+- Draft ideas you don't want searchable yet
+
+### Attachment Handling
+
+Control how jo handles note attachments:
+
+- **Metadata only** — Index file names and types (default)
+- **Full content** — Extract and index text from images, PDFs, documents
+- **Skip attachments** — Only index text content of notes
+
+<Tip>
+Enabling "Full content" attachment indexing lets jo search for text in screenshots, scanned documents, and photos within your notes.
+</Tip>
+
+### Time Limits
+
+Control how far back jo indexes notes:
+
+- **Last 6 months**
+- **Last 1 year**
+- **Last 2 years**
+- **All notes** (default)
+
+Limiting time range can speed up searches if you have thousands of old notes.
+
+### Multiple iCloud Accounts
+
+If you use multiple iCloud accounts on your Mac:
+
+1. Settings → Notes → **Accounts**
+2. Choose which accounts to index
+3. Disable personal accounts if you only want work notes, or vice versa
+
+## Search Capabilities
+
+### Natural Language Queries
+
+Ask about your notes naturally:
+
+- **"What came out of my 1:1 with Sarah?"** — Finds meeting notes
+- **"Help me pull together my competitor notes"** — Gathers related notes
+- **"Show me my notes about the kitchen remodel"** — Searches by topic
+- **"What did I write about marketing strategy last month?"** — Time-based search
+
+### Content Understanding
+
+jo understands what your notes are about, not just keywords:
+
+```
+You: "Find my notes about money problems"
+jo: Found 3 notes related to budget and financial planning:
+     • "Q2 Budget Review" (March 10)
+     • "Cost-cutting ideas" (March 15)
+     • "Expense tracking setup" (Feb 28)
+```
+
+Even though you said "money problems," jo understood you meant financial topics.
+
+### Organization by Topic
+
+jo automatically understands note relationships:
+
+```
+You: "Show me everything about the website redesign"
+jo: Found 8 notes across 3 folders:
+     
+     Design Ideas (4 notes):
+     • Homepage wireframes
+     • Color palette options
+     • Font selections
+     • Inspiration sites
+     
+     Technical (2 notes):
+     • Tech stack decisions
+     • Migration plan
+     
+     Meetings (2 notes):
+     • Kickoff meeting notes
+     • Design review with team
+```
+
+### Cross-Source Intelligence
+
+jo connects notes with other data:
+
+```
+You: "What notes reference files from the project folder?"
+jo: These notes link to files in ~/Documents/Projects/Website:
+     • "Technical Specs" mentions Requirements.pdf
+     • "Design Review" references Homepage_v3.sketch
+     • "Budget Planning" includes Budget_2024.xlsx
+```
+
+## Example Queries
+
+Real ways users search Notes with jo:
+
+### Finding Specific Notes
+
+- "Where's my note about the conference I attended?"
+- "Show me the note with the recipe for banana bread"
+- "Find my brainstorm about the app feature"
+
+### Gathering Information
+
+- "Summarize my notes about the hiring process"
+- "What have I written about remote work?"
+- "Show me all notes tagged with #urgent"
+
+### Project Organization
+
+- "Pull together all notes about the product launch"
+- "What notes are related to the marketing campaign?"
+- "Show me meeting notes from the design project"
+
+### Time-Based Searches
+
+- "What did I write in my journal last week?"
+- "Show me notes from my vacation in July"
+- "Find notes created during Q1"
+
+### Checklist and Task Searches
+
+- "What incomplete tasks do I have in my notes?"
+- "Show me notes with checklists about the move"
+- "Find my packing list for the trip"
+
+## Working with Tags
+
+### System Tags
+
+Apple Notes supports native tags (from iOS 17 / macOS Sonoma):
+
+- jo indexes and understands system tags
+- Search by tag: "Show me notes tagged #work"
+- Combine with other criteria: "Find #urgent notes from this week"
+
+### Hashtag Searches
+
+jo also recognizes hashtags within note text:
+
+- `#project` — Project-related notes
+- `#important` — High-priority notes
+- `#idea` — Brainstorming and ideas
+- `#meeting` — Meeting notes
+
+```
+You: "Show me notes with #project and #urgent"
+jo: Found 5 notes tagged with both #project and #urgent:
+     • "Website deadline moved up" (March 18)
+     • "Critical bug in production" (March 15)
+     ...
+```
+
+<Info>
+jo recognizes both Apple's native tags (system-level) and hashtags you write within notes (#custom-tags).
+</Info>
+
+## Performance and Storage
+
+### Initial Indexing
+
+When you first enable Notes:
+
+- **Time**: 3-10 minutes for 1,000-5,000 notes
+- **Impact**: About 10-15% CPU usage during indexing
+- **Longer for large collections**: 10,000+ notes may take 20-30 minutes
+
+### Continuous Indexing
+
+After initial setup:
+
+- New notes are indexed within seconds of creation
+- Edits to existing notes are reflected immediately
+- Background indexing uses minimal resources
+
+### Storage Requirements
+
+Notes index size:
+
+- **Text-only notes**: ~2-5KB per note
+- **With attachments (metadata)**: ~5-10KB per note
+- **With attachment content**: Varies based on attachments
+- **Example**: 1,000 notes ≈ 5-10MB index
+
+<Tip>
+Notes indexing is very efficient. Even large note collections (5,000+) typically use less than 100MB of storage.
+</Tip>
+
+## Privacy and Security
+
+### Local Processing Only
+
+Your notes stay completely private:
+
+- **No cloud uploads** — Notes are indexed locally on your Mac
+- **Encrypted storage** — The local index is encrypted on disk
+- **Read-only access** — jo cannot edit or delete notes
+- **No external sharing** — Your notes never leave your device
+
+### Locked Notes Protection
+
+Password-protected notes are never indexed:
+
+- jo cannot access locked notes, even if you unlock them manually
+- Apple's security mechanism prevents any third-party access
+- Locking a note removes it from jo's index
+
+### Shared Notes
+
+For notes shared with others via iCloud:
+
+- jo indexes shared notes by default (they're in your Notes app)
+- You can exclude specific shared folders in Settings → Notes → **Excluded Folders**
+- Shared notes are indexed locally; sharing doesn't affect jo's privacy
+
+<Warning>
+While jo processes notes locally, remember that the indexed data is stored on your Mac. Use macOS security features (FileVault, strong password) to protect your device.
+</Warning>
+
+### Deleting Note Data
+
+To remove jo's notes index:
+
+1. Settings → Notes → **Clear Notes Index**
+2. Optionally disable Notes integration entirely
+3. Uninstalling jo also deletes all indexed note data
+
+## Troubleshooting
+
+### jo Can't Access Notes
+
+1. Check macOS permissions: System Settings → Privacy & Security → Notes
+2. Ensure "jo" is enabled in the list
+3. Restart jo after granting permission
+4. If issues persist, try removing and re-granting permission
+
+### Notes Not Appearing
+
+1. Verify the note isn't in an excluded folder
+2. Check if the note is locked (password-protected)
+3. Ensure the note isn't in the Recently Deleted folder
+4. Try re-indexing: Settings → Notes → **Re-index Notes**
+
+### jo Can't Find a Note
+
+If you know a note exists but jo can't find it:
+
+1. Try different search phrases or keywords from the note
+2. Search by the note's creation date: "Show me notes from March 15"
+3. Check if the note's folder is excluded
+4. Verify the note is synced to your Mac (iCloud sync can take time)
+
+### Attachments Not Searchable
+
+1. Enable attachment content indexing: Settings → Notes → **Attachment Handling**
+2. Select "Full content"
+3. Re-index notes to process existing attachments
+
+### Search is Slow
+
+1. Check if you have a very large note collection (10,000+)
+2. Consider excluding old folders you rarely search
+3. Ensure you have at least 2GB of free disk space
+4. Try limiting time range: Settings → Notes → **Time Limits**
+
+## Related Data Sources
+
+- [Files](/data-sources/files) — Files referenced or linked in notes
+- [Email](/data-sources/email) — Emails about topics mentioned in notes
+- [Messages](/data-sources/messages) — Conversations related to note content

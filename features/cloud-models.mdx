@@ -1,0 +1,355 @@
+---
+title: Cloud models
+description: When to use cloud models like GPT, Claude, Gemini, and Grok with jo
+---
+
+While jo runs locally on your Mac, you can optionally call in cloud models when you need extra computing power or specialized capabilities.
+
+## Available cloud models
+
+jo supports the most powerful AI models available:
+
+<CardGroup cols={2}>
+  <Card title="GPT (OpenAI)" icon="bolt">
+    GPT-4o and GPT-5.2 for advanced reasoning and analysis
+  </Card>
+  <Card title="Claude (Anthropic)" icon="message">
+    Claude 3.5 Sonnet for complex tasks and long-form writing
+  </Card>
+  <Card title="Gemini (Google)" icon="google">
+    Gemini Pro for multimodal understanding and analysis
+  </Card>
+  <Card title="Grok (xAI)" icon="brain">
+    Grok for real-time information and reasoning
+  </Card>
+</CardGroup>
+
+<Info>
+  **Local model included:** jo also ships with a local model that runs entirely on your Mac. Swap between models anytime.
+</Info>
+
+## When to use cloud models
+
+Most queries run completely locally on your Mac. Use cloud models when you need:
+
+### Complex reasoning
+
+- Multi-step problem solving
+- Strategic planning
+- Analyzing trade-offs
+- Complex decision-making
+
+**Example:** "Help me prep for this salary negotiation" — Claude can roleplay scenarios and suggest strategies.
+
+### Advanced analysis
+
+- Deep document analysis
+- Code generation and review
+- Technical explanations
+- Research synthesis
+
+**Example:** "Review this contract and explain the key terms" — GPT can provide detailed legal analysis.
+
+### Specialized tasks
+
+- Writing and editing
+- Mathematical calculations
+- Language translation
+- Creative brainstorming
+
+**Example:** "Help me write a compelling product launch email" — Claude excels at long-form writing.
+
+### Extended context
+
+- Processing many documents at once
+- Long conversation history
+- Connecting distant pieces of information
+
+<Tip>
+  **Local first:** Try local queries first. They're free, instant, and completely private. Use cloud models when you need that extra power.
+</Tip>
+
+## When local is enough
+
+Your Mac's local model handles:
+
+### Search and retrieval
+
+- Finding emails, notes, or files
+- Searching your photo library
+- Looking up past conversations
+- Locating documents
+
+**Example:** "Where's that W-9 from my accountant?" — Local model finds it instantly.
+
+### Summaries
+
+- Summarizing email threads
+- Catching up on groupchats
+- Meeting note summaries
+- Quick document overviews
+
+**Example:** "Catch me up on the family chat" — Local model summarizes locally.
+
+### Simple questions
+
+- Quick factual lookups from your data
+- Calendar queries
+- Contact information
+- Recent activity
+
+**Example:** "When's my next meeting?" — Local model answers instantly.
+
+<Warning>
+  **Privacy:** Local queries never leave your Mac. Your personal data stays completely private when using the local model.
+</Warning>
+
+## How to use cloud models
+
+Call in a cloud model by choosing it before or during your conversation.
+
+### Selecting a model
+
+1. **In the query box:** Click the model selector
+2. **Choose your model:** Pick GPT, Claude, Gemini, or Grok
+3. **Ask your question:** jo sends that conversation to the cloud
+
+### What gets sent
+
+When you use a cloud model:
+
+- **Only that conversation** is sent
+- **Context you provide** (any files or data you reference)
+- **Not your full index** — your entire data stays local
+
+<Info>
+  **You control context:** jo asks what information to include before sending to a cloud model. You explicitly choose what context gets shared.
+</Info>
+
+### Example workflow
+
+1. **Local search:** "Find all my notes about the Q4 strategy"
+2. **jo finds them** using the local model
+3. **Switch to Claude:** "Now help me write a presentation deck"
+4. **You confirm:** jo asks "Send these 5 notes to Claude?"
+5. **Claude analyzes:** Only those notes are sent, not your entire data
+
+## Pricing model
+
+Cloud models use pay-per-use pricing. No subscriptions.
+
+### How it works
+
+- **Local queries:** Always free
+- **Cloud queries:** $0.01-0.05 per conversation
+- **No monthly fee:** Pay only for what you use
+- **No commitment:** Stop anytime
+
+<CardGroup cols={2}>
+  <Card title="Average user" icon="dollar-sign">
+    $5-10/month for occasional cloud model use
+  </Card>
+  <Card title="Power user" icon="chart-line">
+    Under $20/month even with frequent cloud queries
+  </Card>
+</CardGroup>
+
+### Cost examples
+
+| Query type | Model | Typical cost |
+|------------|-------|-------------|
+| Simple search | Local | Free |
+| Groupchat summary | Local | Free |
+| Document analysis | GPT-4o | ~$0.02 |
+| Long-form writing | Claude | ~$0.03 |
+| Code generation | GPT-4o | ~$0.02 |
+| Complex reasoning | GPT-5.2 | ~$0.05 |
+
+<Tip>
+  **Most users spend $3-8/month:** Because most queries run locally for free, you only pay for the advanced tasks that truly need cloud power.
+</Tip>
+
+## Smart routing
+
+jo automatically routes between fast and reasoning models based on your question.
+
+### Fast models
+
+For most queries:
+- GPT-4o (OpenAI)
+- Claude 3.5 Sonnet (Anthropic)
+- Response time: 1-3 seconds
+
+### Reasoning models
+
+For complex problems:
+- GPT-5.2 (OpenAI)
+- Claude 3.5 Opus (Anthropic)
+- Response time: 10-30 seconds
+- Higher accuracy on hard problems
+
+<Info>
+  **Automatic selection:** jo picks the right model speed based on your query complexity. You can also manually override if needed.
+</Info>
+
+## Connecting cloud models
+
+Set up cloud models in jo's preferences.
+
+### First-time setup
+
+1. **Open jo preferences**
+2. **Go to Models tab**
+3. **Add API key:** For OpenAI, Anthropic, etc.
+4. **Test connection:** jo verifies it works
+5. **Start using:** Cloud models now available
+
+### API keys
+
+You'll need API keys from:
+
+- **OpenAI:** [platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+- **Anthropic:** [console.anthropic.com](https://console.anthropic.com)
+- **Google AI:** [ai.google.dev](https://ai.google.dev)
+
+<Tip>
+  **Your own keys:** jo uses your personal API keys. You pay the providers directly at their standard rates. No markup from jo.
+</Tip>
+
+### Billing
+
+You're billed directly by the model provider:
+
+- OpenAI bills your OpenAI account
+- Anthropic bills your Anthropic account
+- Google bills your Google Cloud account
+
+**jo never handles payment.** You pay the providers at their standard rates.
+
+## Privacy with cloud models
+
+When you use a cloud model, that conversation is sent to the provider.
+
+### What's sent
+
+- Your question
+- Context you explicitly chose to include
+- Previous messages in that conversation
+
+### What's NOT sent
+
+- Your full data index
+- Other conversations
+- Your entire photo library or email archive
+- Anything you didn't explicitly include
+
+<Warning>
+  **Local data stays local:** Even when using cloud models, your full indexed data never leaves your Mac. Only the specific conversation you're having is sent.
+</Warning>
+
+### Provider privacy policies
+
+Cloud providers have policies about data usage:
+
+- **OpenAI:** Doesn't train on API data (per their terms)
+- **Anthropic:** No training on customer data
+- **Google:** Doesn't train on Gemini API data
+
+<Info>
+  **No training:** Cloud inference uses providers with contracts that prevent training on your data.
+</Info>
+
+## Best practices
+
+### 1. Start local
+
+Try the local model first. It's free, instant, and private.
+
+```
+❌ Don't: Immediately use GPT for "Find that email from my lawyer"
+✅ Do: Use local model to find it, then GPT if you need analysis
+```
+
+### 2. Be explicit about context
+
+When using cloud models, clearly state what context to include.
+
+```
+❌ Don't: "Analyze this" (unclear what "this" is)
+✅ Do: "Analyze the Q4 budget spreadsheet and last month's email thread"
+```
+
+### 3. Use the right model
+
+Pick the model that fits the task:
+
+- **Simple search:** Local model
+- **Quick analysis:** GPT-4o
+- **Long-form writing:** Claude
+- **Code generation:** GPT-4o
+- **Complex reasoning:** GPT-5.2
+
+<Tip>
+  **Let jo choose:** If unsure, let jo auto-route to the right model. It's optimized for cost and performance.
+</Tip>
+
+### 4. Review context before sending
+
+When jo asks to send context to a cloud model, review what's included:
+
+- Are you sharing sensitive information?
+- Is all this context necessary?
+- Can you be more selective?
+
+### 5. Use local for sensitive data
+
+For highly sensitive data (legal, medical, financial):
+
+```
+✅ Use local: Search and summary of sensitive documents
+❌ Use cloud: Deep analysis of sensitive documents
+```
+
+Or use cloud models only for non-sensitive parts of your workflow.
+
+## Switching models mid-conversation
+
+You can switch models during a conversation:
+
+1. **Start local:** "Find my notes on the product roadmap"
+2. **Switch to Claude:** "Now help me write a memo about this"
+3. **Back to local:** "Find the email thread with stakeholders"
+4. **Switch to GPT:** "Draft responses to their concerns"
+
+<Info>
+  **Seamless switching:** jo maintains context when switching between models. Your conversation flows naturally.
+</Info>
+
+## Offline usage
+
+Cloud models require internet. The local model works offline.
+
+### When offline
+
+- ✅ Search your data
+- ✅ Summarize groupchats
+- ✅ Find files and emails
+- ❌ Cannot use GPT, Claude, Gemini, or Grok
+
+<Tip>
+  **Travel mode:** The local model works anywhere, even on a plane. All your data is already indexed locally.
+</Tip>
+
+## Future models
+
+jo will support new models as they're released:
+
+- New versions from OpenAI, Anthropic, Google
+- Additional model providers
+- Specialized models for specific tasks
+
+You don't need to update jo for new models — they'll appear automatically when available.
+
+<Info>
+  **Stay updated:** jo checks for new available models and adds them to your model selector automatically.
+</Info>

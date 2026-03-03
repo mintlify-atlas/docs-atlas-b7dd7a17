@@ -1,0 +1,287 @@
+---
+title: "Keyboard shortcuts"
+description: "Master jo's keyboard shortcuts to search faster and work more efficiently on your Mac"
+icon: "keyboard"
+---
+
+jo is built for speed. Learn these keyboard shortcuts to query your Mac without breaking focus or reaching for your mouse.
+
+## Essential shortcuts
+
+These shortcuts work system-wide, from any application:
+
+| Shortcut | Action | Description |
+|----------|--------|-------------|
+| **Cmd+Space** | Launch jo | Opens the jo query window from anywhere. Your cursor is ready to type immediately. |
+| **Cmd+Shift+Space** | Quick query | Opens jo with your current selection pre-filled (works in most apps). |
+| **Esc** | Close jo | Dismisses the jo window and returns focus to your previous app. |
+| **Cmd+,** | Open settings | Opens jo Settings panel to manage preferences, permissions, and cloud models. |
+
+<Tip>
+**Already using Cmd+Space for Spotlight?** jo detects this and suggests **Cmd+Shift+J** as an alternative during setup. You can customize the shortcut in Settings.
+</Tip>
+
+## Within the jo window
+
+These shortcuts work when the jo query window is open:
+
+### Query and navigation
+
+| Shortcut | Action | Description |
+|----------|--------|-------------|
+| **Enter** | Submit query | Sends your question to jo. |
+| **Shift+Enter** | New line | Adds a line break within your query (for multi-line questions). |
+| **Cmd+K** | Clear query | Clears the current query text. |
+| **Cmd+L** | Focus query field | Returns cursor to the query input (from anywhere in the window). |
+| **Up Arrow** | Previous query | Cycles through your recent queries (like terminal history). |
+| **Down Arrow** | Next query | Cycles forward through query history. |
+
+### Response actions
+
+| Shortcut | Action | Description |
+|----------|--------|-------------|
+| **Cmd+C** | Copy response | Copies the entire response text to clipboard. |
+| **Cmd+Shift+C** | Copy source link | Copies the file path or source reference for the answer. |
+| **Cmd+O** | Open source | Opens the source file, email, or note that jo referenced. |
+| **Cmd+E** | Enhance with cloud | Sends the query to a cloud model for a more detailed response. |
+
+### Result navigation
+
+| Shortcut | Action | Description |
+|----------|--------|-------------|
+| **Tab** | Next result | Moves focus to the next search result or source reference. |
+| **Shift+Tab** | Previous result | Moves focus to the previous result. |
+| **Cmd+1-9** | Jump to result | Jumps directly to result 1-9 in the list. |
+| **Cmd+[** | Back | Goes back to previous query results. |
+| **Cmd+]** | Forward | Goes forward in query history. |
+
+## Advanced shortcuts
+
+### Cloud model invocation
+
+Quickly call specific cloud models with keyboard shortcuts:
+
+| Shortcut | Action | Description |
+|----------|--------|-------------|
+| **Cmd+Shift+G** | Call GPT | Sends the current query to GPT-5.2 instead of local model. |
+| **Cmd+Shift+C** | Call Claude | Sends the query to Anthropic Claude. |
+| **Cmd+Shift+M** | Call Gemini | Sends the query to Google Gemini. |
+| **Cmd+Shift+X** | Call Grok | Sends the query to xAI Grok. |
+
+<Note>
+These shortcuts only work if you've connected the respective cloud model in Settings > Cloud Models.
+</Note>
+
+### Quick filters
+
+Narrow your search scope with filter shortcuts:
+
+| Shortcut | Action | Description |
+|----------|--------|-------------|
+| **Cmd+Shift+E** | Email only | Limits the query to Mail content only. |
+| **Cmd+Shift+N** | Notes only | Searches only Apple Notes. |
+| **Cmd+Shift+F** | Files only | Searches only local files and documents. |
+| **Cmd+Shift+P** | Photos only | Searches only the Photos app. |
+| **Cmd+Shift+B** | Browser only | Searches only browsing history and bookmarks. |
+| **Cmd+Shift+A** | All sources | Removes any active filters (default behavior). |
+
+### Power user shortcuts
+
+| Shortcut | Action | Description |
+|----------|--------|-------------|
+| **Cmd+Shift+H** | Query history | Opens a panel showing all your recent queries. |
+| **Cmd+Shift+S** | Save snippet | Saves the current response as a snippet for reuse. |
+| **Cmd+Shift+R** | Refresh index | Triggers a manual re-index of your data (useful after importing many files). |
+| **Cmd+Shift+D** | Debug mode | Opens debug information panel (shows query processing details). |
+
+## Customizing shortcuts
+
+You can customize most jo shortcuts to match your workflow:
+
+<Steps>
+  <Step title="Open keyboard settings">
+    Press **Cmd+,** to open Settings, then click the **Keyboard** tab.
+  </Step>
+  
+  <Step title="Select shortcut to change">
+    Click on any shortcut in the list. The field highlights and shows "Press new shortcut..."
+  </Step>
+  
+  <Step title="Press your new shortcut">
+    Type your desired key combination. jo warns you if it conflicts with system shortcuts or other jo shortcuts.
+    
+    <Warning>Avoid overriding critical system shortcuts like Cmd+Q (Quit), Cmd+W (Close), or Cmd+Tab (App Switcher).</Warning>
+  </Step>
+  
+  <Step title="Save changes">
+    Click **Save** or press **Enter**. Your new shortcut takes effect immediately.
+  </Step>
+</Steps>
+
+### Recommended custom shortcuts
+
+Here are popular customizations from the jo community:
+
+<AccordionGroup>
+  <Accordion title="Hyper key setup" icon="command">
+    If you use a hyper key (Caps Lock remapped to Cmd+Ctrl+Option+Shift), try:
+    
+    - **Hyper+J**: Launch jo
+    - **Hyper+H**: Query history
+    - **Hyper+S**: Settings
+    
+    This keeps all jo shortcuts on one modifier, freeing up other shortcuts.
+  </Accordion>
+  
+  <Accordion title="Minimal shortcuts" icon="minimize">
+    For a clutter-free shortcut experience:
+    
+    - **Cmd+J**: Launch jo (disable only if you don't use "Jump to Selection" in other apps)
+    - **Cmd+Shift+J**: Quick query
+    - Disable all other custom shortcuts and use mouse/menu for rare actions
+  </Accordion>
+  
+  <Accordion title="Vim-style navigation" icon="terminal">
+    For developers who love Vim keybindings:
+    
+    - **Cmd+J**: Next result (down)
+    - **Cmd+K**: Previous result (up)
+    - **Cmd+H**: Back
+    - **Cmd+L**: Forward
+    
+    Note: This overrides the default Clear Query shortcut (Cmd+K).
+  </Accordion>
+</AccordionGroup>
+
+## Shortcut conflicts and resolution
+
+### Common conflicts
+
+These macOS and app shortcuts may conflict with jo defaults:
+
+| Conflict | Affected Shortcut | Resolution |
+|----------|-------------------|------------|
+| Spotlight | Cmd+Space | Keep Spotlight or reassign jo to Cmd+Shift+J |
+| Alfred/Raycast | Cmd+Space | Use Cmd+Option+Space for jo |
+| Keyboard Maestro | Various | Check for conflicts in Keyboard Maestro preferences |
+| VS Code | Cmd+Shift+C (Copy Path) | Disable jo's "Copy source link" shortcut |
+| Chrome/Safari | Cmd+Shift+B (Bookmarks) | Use filters via query prefix instead (e.g., "browser: my query") |
+
+### Resolving conflicts
+
+<Steps>
+  <Step title="Identify the conflict">
+    macOS doesn't always warn about conflicts. If a shortcut isn't working, check if another app uses it:
+    
+    - Open System Settings > Keyboard > Keyboard Shortcuts
+    - Review app-specific shortcuts in the Apps section
+  </Step>
+  
+  <Step title="Decide priority">
+    Which action do you use more often? That one should keep the shortcut.
+  </Step>
+  
+  <Step title="Reassign the shortcut">
+    Reassign the less frequently used action:
+    
+    - For jo shortcuts: Settings > Keyboard
+    - For system shortcuts: System Settings > Keyboard > Keyboard Shortcuts
+    - For app-specific shortcuts: Check the app's Preferences
+  </Step>
+</Steps>
+
+## Accessibility shortcuts
+
+jo supports macOS accessibility features:
+
+| Feature | How to Enable | Description |
+|---------|---------------|-------------|
+| **Voice Control** | System Settings > Accessibility > Voice Control | Control jo entirely by voice with commands like "Press Cmd Space", "Type my query", "Click Submit" |
+| **Full Keyboard Access** | System Settings > Keyboard > Keyboard Navigation | Navigate all jo UI elements with Tab and arrow keys |
+| **Sticky Keys** | System Settings > Accessibility > Keyboard | Press modifier keys sequentially instead of simultaneously (e.g., Cmd, then Space) |
+| **Slow Keys** | System Settings > Accessibility > Keyboard | Adds delay before accepting keypresses (reduces accidental shortcuts) |
+
+## Quick reference card
+
+Here's a printable cheat sheet of the most essential shortcuts:
+
+<div className="shortcut-reference">
+
+### Launch & Basic
+- **Cmd+Space** — Launch jo
+- **Cmd+Shift+Space** — Quick query with selection
+- **Enter** — Submit query
+- **Esc** — Close jo
+
+### Navigation
+- **Up/Down** — Previous/next query from history
+- **Tab/Shift+Tab** — Next/previous result
+- **Cmd+[/]** — Back/forward in history
+
+### Actions
+- **Cmd+O** — Open source file
+- **Cmd+E** — Enhance with cloud
+- **Cmd+C** — Copy response
+- **Cmd+K** — Clear query
+
+### Settings
+- **Cmd+,** — Open settings
+- **Cmd+Shift+H** — Query history
+
+</div>
+
+<Tip>
+**Print this page** or save the quick reference to PDF for easy access while learning the shortcuts.
+</Tip>
+
+## Pro tips
+
+<AccordionGroup>
+  <Accordion title="Chain shortcuts for speed" icon="bolt">
+    Combine shortcuts to work faster:
+    
+    - **Cmd+Space** → type query → **Enter** → **Cmd+O** (launch jo, ask question, open result)
+    - **Cmd+Shift+Space** → **Cmd+Shift+G** → **Enter** (quick query with selection, send to GPT)
+    - **Up** → **Cmd+E** (recall last query, enhance with cloud)
+  </Accordion>
+  
+  <Accordion title="Use query history liberally" icon="clock-rotate-left">
+    **Up Arrow** cycles through recent queries. Use it to:
+    
+    - Re-run queries after updating files
+    - Refine previous questions
+    - Compare local vs. cloud responses (run same query with Cmd+Shift+G)
+  </Accordion>
+  
+  <Accordion title="Master the quick filters" icon="filter">
+    Quick filters (**Cmd+Shift+E/N/F/P/B**) dramatically speed up searches when you know the source type:
+    
+    - Looking for an email? **Cmd+Shift+E** first, then query
+    - Need a file? **Cmd+Shift+F** narrows it down
+    - Searching photos? **Cmd+Shift+P** is faster than scrolling
+  </Accordion>
+  
+  <Accordion title="Create text expansion shortcuts" icon="text-size">
+    Use macOS Text Replacement or tools like TextExpander for common queries:
+    
+    - `;prep` → "Prep me for my next meeting"
+    - `;emails` → "Show me unread emails from today"
+    - `;find` → "Where's that file about"
+    
+    This works in jo's query field like any text input.
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+Now that you know jo's shortcuts:
+
+<CardGroup cols={2}>
+  <Card title="Your first queries" icon="comment-dots" href="/guides/first-queries">
+    Put your new shortcuts to use with effective queries
+  </Card>
+  
+  <Card title="Managing permissions" icon="shield-check" href="/guides/managing-permissions">
+    Control what data jo can access on your Mac
+  </Card>
+</CardGroup>

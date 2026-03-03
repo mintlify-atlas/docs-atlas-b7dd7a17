@@ -1,0 +1,555 @@
+---
+title: "Data management"
+description: "Understand where jo stores data, manage indexes and cache, backup and restore, and completely uninstall jo"
+---
+
+## Where jo stores data
+
+jo keeps all data on your Mac. Nothing is sent to external servers unless you explicitly use cloud models.
+
+### Data locations
+
+<Accordion title="Index database">
+
+**Location:** `~/Library/Application Support/jo/index.db`
+
+**Contains:**
+- Searchable index of your files, emails, and browser history
+- Embeddings for semantic search
+- Metadata (file paths, timestamps, sizes)
+
+**Size:** Typically 1-5% of your source data size
+- 50,000 documents ≈ 500MB-2GB
+- 100,000 documents ≈ 1-4GB
+
+<Note>
+The index contains searchable representations of your content, not the original files themselves.
+</Note>
+
+</Accordion>
+
+<Accordion title="Cache directory">
+
+**Location:** `~/Library/Caches/jo/`
+
+**Contains:**
+- Temporary processing files
+- Thumbnail previews
+- Model cache (embeddings, tokenizers)
+- Query result cache
+
+**Size:** 500MB-2GB
+
+<Note>
+Cache can be safely deleted. Jo will regenerate it as needed.
+</Note>
+
+</Accordion>
+
+<Accordion title="Configuration files">
+
+**Location:** `~/Library/Preferences/ai.askjo.jo.plist`
+
+**Contains:**
+- User preferences
+- Data source configurations
+- API keys (encrypted)
+- Exclusion rules
+
+**Size:** Less than 1MB
+
+</Accordion>
+
+<Accordion title="Logs">
+
+**Location:** `~/Library/Logs/jo/`
+
+**Contains:**
+- Application logs
+- Error reports
+- Debug logs (if enabled)
+
+**Size:** 10-100MB (rotated automatically)
+
+</Accordion>
+
+### What jo does NOT store
+
+- Original file contents (jo only stores references and indexes)
+- Unencrypted API keys or passwords
+- Conversation history with cloud models (unless you enable history)
+- Usage analytics or telemetry
+
+## Managing disk usage
+
+### Check current usage
+
+<Steps>
+
+<Step title="Open Settings">
+Go to Settings > Data Sources > Storage
+</Step>
+
+<Step title="Review breakdown">
+See disk usage by:
+- Index database
+- Cache
+- Logs
+- Total
+</Step>
+
+<Step title="Identify large sources">
+Expand "Index by Source" to see which data sources use most space.
+</Step>
+
+</Steps>
+
+### Reduce index size
+
+<Accordion title="Exclude file types">
+
+Prevent jo from indexing file types you don't need:
+
+<Steps>
+
+<Step title="Navigate to file types">
+Settings > Data Sources > Files > File Types
+</Step>
+
+<Step title="Uncheck unnecessary types">
+Common excludes to save space:
+- Video files (.mp4, .mov)
+- Audio files (.mp3, .wav)
+- Archives (.zip, .tar)
+- Images (if you don't search them)
+- Code dependencies (node_modules, .git)
+</Step>
+
+<Step title="Apply and re-index">
+Click Apply. Jo will remove excluded file types from the index.
+</Step>
+
+</Steps>
+
+</Accordion>
+
+<Accordion title="Limit email history depth">
+
+Reduce how far back jo indexes emails:
+
+<Steps>
+
+<Step title="Email settings">
+Settings > Data Sources > Email > History Depth
+</Step>
+
+<Step title="Set time limit">
+Options:
+- Last 30 days
+- Last 90 days
+- Last 6 months
+- Last year
+- All time (default)
+</Step>
+
+<Step title="Apply changes">
+Jo will re-index email with the new limit.
+</Step>
+
+</Steps>
+
+<Note>
+Emails older than your limit remain in your inbox—they just won't be searchable in jo.
+</Note>
+
+</Accordion>
+
+<Accordion title="Exclude directories">
+
+Skip folders you don't need indexed:
+
+<Steps>
+
+<Step title="Open file source settings">
+Settings > Data Sources > Files > Exclusions
+</Step>
+
+<Step title="Add paths">
+Common exclusions:
+- `~/Downloads` (temporary files)
+- `~/Movies` (large media)
+- `~/Developer/node_modules` (dependencies)
+- External drive archives
+</Step>
+
+<Step title="Save and re-index">
+Jo removes excluded paths from the index.
+</Step>
+
+</Steps>
+
+</Accordion>
+
+## Clearing cache and indexes
+
+### Clear cache
+
+<Warning>
+Clearing cache is safe and won't delete any indexed data. Jo will rebuild cache as needed.
+</Warning>
+
+<Steps>
+
+<Step title="Open Settings">
+Settings > Advanced > Storage
+</Step>
+
+<Step title="Click 'Clear Cache'">
+This removes:
+- Temporary files
+- Thumbnail previews
+- Query result cache
+</Step>
+
+<Step title="Restart jo">
+Quit and relaunch for best performance after clearing cache.
+</Step>
+
+</Steps>
+
+**What happens:**
+- Immediate disk space freed: 500MB-2GB
+- First few queries after clearing may be slightly slower
+- Cache rebuilds automatically over the next few hours
+
+### Reset index
+
+<Warning>
+Resetting the index deletes all indexed data. Jo will need to re-index everything from scratch, which can take 30 minutes to several hours depending on data volume.
+</Warning>
+
+**When to reset:**
+- Index appears corrupted (incorrect results, errors)
+- After major macOS update
+- Troubleshooting persistent issues
+- Starting fresh after changing data sources
+
+<Steps>
+
+<Step title="Back up preferences (optional)">
+Settings > Advanced > Export Settings
+
+This saves your configuration so you don't need to reconfigure after reset.
+</Step>
+
+<Step title="Reset index">
+Settings > Advanced > Storage > Reset Index
+</Step>
+
+<Step title="Confirm action">
+Type "RESET" to confirm. This action cannot be undone.
+</Step>
+
+<Step title="Wait for re-indexing">
+Jo automatically begins re-indexing all data sources. This runs in the background.
+</Step>
+
+</Steps>
+
+**What happens:**
+- Index database deleted
+- All search history cleared
+- Data source configurations preserved
+- Re-indexing starts automatically
+
+### Clear specific data sources
+
+<Accordion title="Remove a single data source without affecting others">
+
+<Steps>
+
+<Step title="Open data source settings">
+Settings > Data Sources > [Source Name]
+</Step>
+
+<Step title="Click 'Remove from Index'">
+This removes only this source from the index.
+</Step>
+
+<Step title="Optionally re-add later">
+You can re-enable and re-index this source anytime.
+</Step>
+
+</Steps>
+
+</Accordion>
+
+## Backup and restore
+
+### What to back up
+
+jo's data falls into two categories:
+
+1. **Preferences and configuration** (small, important)
+   - Data source settings
+   - Exclusion rules
+   - Cloud model configurations
+   - Custom preferences
+
+2. **Index database** (large, can be rebuilt)
+   - Searchable index
+   - Can be regenerated by re-indexing
+
+<Note>
+Most users only need to back up preferences. The index can always be rebuilt from your original files.
+</Note>
+
+### Export settings
+
+<Steps>
+
+<Step title="Open export dialog">
+Settings > Advanced > Data Management > Export Settings
+</Step>
+
+<Step title="Choose export location">
+Save `jo-settings-backup.json` to:
+- iCloud Drive (syncs across devices)
+- External backup drive
+- Secure cloud storage
+</Step>
+
+<Step title="Verify export">
+Confirm the file is ~10-50KB and contains your settings.
+</Step>
+
+</Steps>
+
+**Exported settings include:**
+- Data source configurations (paths, exclusions)
+- API keys (encrypted)
+- Search preferences
+- Indexing schedules
+
+**NOT included:**
+- The actual index database
+- Cache
+- Logs
+
+### Restore settings
+
+<Steps>
+
+<Step title="Install jo on new Mac">
+Download from askjo.ai and complete initial setup.
+</Step>
+
+<Step title="Import settings">
+Settings > Advanced > Data Management > Import Settings
+</Step>
+
+<Step title="Select backup file">
+Choose your `jo-settings-backup.json` file.
+</Step>
+
+<Step title="Re-index data sources">
+Jo will automatically start indexing based on your imported configuration.
+</Step>
+
+</Steps>
+
+<Note>
+API keys are encrypted with your Mac's hardware key. If restoring to a different Mac, you may need to re-enter them.
+</Note>
+
+### Back up index database (advanced)
+
+If you want to back up the actual index to avoid re-indexing:
+
+<Steps>
+
+<Step title="Quit jo completely">
+Cmd+Q to fully quit the application.
+</Step>
+
+<Step title="Copy index database">
+In Finder, press Cmd+Shift+G and go to:
+```
+~/Library/Application Support/jo/
+```
+
+Copy the entire `jo` folder to your backup location.
+</Step>
+
+<Step title="Restore by replacing folder">
+On new Mac or after reinstall, replace the `jo` folder with your backup.
+</Step>
+
+<Step title="Launch jo">
+Jo will use the restored index.
+</Step>
+
+</Steps>
+
+<Warning>
+Index backups are Mac-specific and may not work across different macOS versions or hardware. Settings export is more reliable for migrations.
+</Warning>
+
+## Uninstalling jo
+
+### Quick uninstall
+
+Remove jo app but keep settings (in case you reinstall later):
+
+<Steps>
+
+<Step title="Quit jo">
+Cmd+Q or right-click jo in Dock > Quit
+</Step>
+
+<Step title="Delete app">
+Drag jo from Applications folder to Trash
+</Step>
+
+<Step title="Empty Trash">
+Right-click Trash > Empty Trash
+</Step>
+
+</Steps>
+
+**What remains:**
+- Settings and preferences
+- Index database
+- Cache
+
+These will be reused if you reinstall jo.
+
+### Complete uninstall
+
+<Warning>
+This permanently deletes all jo data including your index, settings, and cache. This action cannot be undone.
+</Warning>
+
+To remove jo completely from your Mac:
+
+<Steps>
+
+<Step title="Quit jo">
+Ensure jo is not running.
+</Step>
+
+<Step title="Delete application">
+Move `/Applications/jo.app` to Trash
+</Step>
+
+<Step title="Remove support files">
+In Finder, press Cmd+Shift+G and delete these folders:
+
+```
+~/Library/Application Support/jo
+~/Library/Caches/jo
+~/Library/Preferences/ai.askjo.jo.plist
+~/Library/Logs/jo
+```
+
+Select each path, press Enter, then move to Trash.
+</Step>
+
+<Step title="Remove Full Disk Access permission">
+System Settings > Privacy & Security > Full Disk Access
+
+Find jo in the list and click the - button to remove.
+</Step>
+
+<Step title="Empty Trash">
+Right-click Trash > Empty Trash
+</Step>
+
+</Steps>
+
+**Disk space recovered:**
+- Application: ~100MB
+- Index database: 1-5GB
+- Cache: 500MB-2GB
+- Total: ~2-8GB depending on index size
+
+### Uninstall script (advanced)
+
+For a complete automated uninstall, run this in Terminal:
+
+```bash
+#!/bin/bash
+# Complete jo uninstall script
+
+echo "Quitting jo..."
+killall jo 2>/dev/null
+
+echo "Removing application..."
+rm -rf /Applications/jo.app
+
+echo "Removing application data..."
+rm -rf ~/Library/Application\ Support/jo
+rm -rf ~/Library/Caches/jo
+rm -f ~/Library/Preferences/ai.askjo.jo.plist
+rm -rf ~/Library/Logs/jo
+
+echo "jo has been completely uninstalled."
+echo "Empty Trash to free disk space."
+```
+
+<Warning>
+Review scripts carefully before running. This will permanently delete all jo data.
+</Warning>
+
+## Privacy and security
+
+### Data protection
+
+<Accordion title="How jo protects your data">
+
+- **Local-only storage**: All data stays on your Mac
+- **Encrypted API keys**: Stored using macOS Keychain
+- **No telemetry**: jo doesn't track usage or send analytics
+- **No account required**: No user data stored on jo servers
+- **Sandboxed**: jo runs in macOS app sandbox for security
+
+</Accordion>
+
+<Accordion title="When data leaves your Mac">
+
+Data is sent externally ONLY when:
+
+1. **You explicitly call a cloud model** (GPT, Claude, Gemini)
+   - Only the current conversation is sent
+   - Never the entire index
+   - You control when this happens
+
+2. **Crash reports** (optional, opt-in only)
+   - Anonymous error data
+   - Helps improve jo
+   - Can be disabled in Settings
+
+</Accordion>
+
+<Accordion title="Secure data deletion">
+
+When you delete data from jo:
+
+- Files removed from index immediately
+- Cache entries overwritten
+- Secure deletion on next database compact (Settings > Advanced > Compact Database)
+
+For maximum security, use FileVault (macOS full-disk encryption).
+
+</Accordion>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Performance" icon="gauge-high" href="/advanced/performance">
+    Optimize indexing and query speed
+  </Card>
+  <Card title="Troubleshooting" icon="wrench" href="/advanced/troubleshooting">
+    Fix common issues
+  </Card>
+</CardGroup>

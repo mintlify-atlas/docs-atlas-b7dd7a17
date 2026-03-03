@@ -1,0 +1,236 @@
+---
+title: "Performance optimization"
+description: "Understand how jo leverages Apple Silicon and optimize performance for indexing, queries, and memory usage"
+---
+
+## How jo leverages Apple Silicon
+
+jo is built specifically for Mac computers with M-series chips (M1, M2, M3, M4) to deliver fast, private AI capabilities directly on your device.
+
+### Neural Engine acceleration
+
+Apple's M-series chips include a dedicated Neural Engine—specialized hardware designed for machine learning tasks:
+
+- **16-core Neural Engine** performs up to 15.8 trillion operations per second
+- **Optimized for transformer models** used in natural language processing
+- **Power efficient** processing without draining battery or generating heat
+- **Zero latency** compared to cloud-based solutions
+
+jo uses the Neural Engine to run local AI models that power semantic search, context extraction, and query understanding—all without sending data off your Mac.
+
+<Note>
+The Neural Engine is separate from your CPU and GPU, meaning jo can process AI tasks without impacting other applications.
+</Note>
+
+## System requirements
+
+For optimal performance, jo requires:
+
+- **Mac with M-series chip** (M1, M2, M3, or M4)
+- **16GB RAM minimum** for handling large indexes and concurrent queries
+- **macOS 12.0 or later**
+- **5-20GB free disk space** depending on the size of your indexed data
+
+### Why 16GB RAM?
+
+jo loads AI models and maintains indexes in memory for instant query response:
+
+- **Embedding models**: 2-4GB for semantic search capabilities
+- **Index cache**: 1-8GB depending on indexed content volume
+- **Query processing**: 1-2GB for active conversations
+- **System overhead**: Remaining memory for macOS and other apps
+
+## Indexing performance
+
+### Initial indexing
+
+When you first set up jo, initial indexing speed depends on the volume of data:
+
+| Data Volume | Typical Time | Files per Second |
+|-------------|--------------|------------------|
+| 10,000 files | 5-10 minutes | ~30-50 |
+| 50,000 files | 30-45 minutes | ~25-40 |
+| 100,000+ files | 1-2 hours | ~20-35 |
+
+<Note>
+Indexing runs in the background and won't block you from using jo. You can start querying as soon as the first batch completes.
+</Note>
+
+### Incremental updates
+
+After initial indexing, jo monitors for changes and updates incrementally:
+
+- **File system changes**: Detected and indexed within 1-5 seconds
+- **Email updates**: Checked every 5 minutes (configurable)
+- **Browser history**: Synced in real-time as you browse
+
+### Optimizing indexing speed
+
+<Steps>
+
+<Step title="Exclude unnecessary directories">
+Avoid indexing large binary files, build artifacts, or node_modules folders. Configure exclusions in Settings > Data Sources.
+</Step>
+
+<Step title="Index during downtime">
+Schedule initial indexing during lunch or overnight. Go to Settings > Indexing > Schedule to set preferred times.
+</Step>
+
+<Step title="Prioritize important sources">
+Index critical folders first (Documents, Desktop) before adding larger archives or external drives.
+</Step>
+
+</Steps>
+
+## Query response times
+
+jo is optimized for near-instant query responses:
+
+### Local queries
+
+- **Simple searches**: Less than 100ms
+- **Semantic queries**: 200-500ms
+- **Complex multi-source queries**: 500ms-1.5s
+
+Response time increases with:
+- Index size (more documents to search)
+- Query complexity (multiple filters or sources)
+- System memory pressure (if RAM is constrained)
+
+### Cloud model queries
+
+When you call in a cloud model (GPT, Claude, Gemini):
+
+- **Context retrieval**: 200-500ms (local)
+- **API latency**: 1-3 seconds (network + processing)
+- **Streaming response**: Starts within 1-2 seconds
+
+<Note>
+jo retrieves relevant context from your local index first, then sends only that conversation to the cloud model—never your entire index.
+</Note>
+
+## Memory usage
+
+### Typical memory footprint
+
+- **Idle state**: 800MB-1.2GB
+- **Active querying**: 1.5-3GB
+- **Indexing**: 2-4GB
+- **Peak usage**: Up to 6GB during large re-indexing operations
+
+### Managing memory pressure
+
+If you experience slowdowns:
+
+<Steps>
+
+<Step title="Check Activity Monitor">
+Open Activity Monitor and look for "jo" under Memory tab. Normal usage should be 2-4GB.
+</Step>
+
+<Step title="Reduce index scope">
+If memory usage exceeds 5GB consistently, consider excluding large file archives or limiting email history depth.
+</Step>
+
+<Step title="Close unused applications">
+Ensure you have at least 4-6GB of free memory available for jo to operate efficiently.
+</Step>
+
+<Step title="Restart jo">
+If memory usage seems stuck high, quit and relaunch jo to clear temporary caches.
+</Step>
+
+</Steps>
+
+## Tips for optimal performance
+
+### Storage optimization
+
+<Accordion title="Use fast SSD storage">
+jo's index performs best on SSDs. If you store indexed content on external drives, use Thunderbolt or USB 3.1+ for best results.
+</Accordion>
+
+<Accordion title="Keep indexes on internal drive">
+Even if source files are on external storage, keep jo's index database on your internal SSD for faster queries.
+</Accordion>
+
+### Network optimization
+
+<Accordion title="Use stable connections for email">
+IMAP email indexing requires stable network connectivity. Use Wi-Fi or Ethernet rather than cellular hotspots for initial setup.
+</Accordion>
+
+<Accordion title="Configure cloud model regions">
+In Settings > Cloud Models, select API regions closest to you for lower latency (e.g., us-east for North America, eu-west for Europe).
+</Accordion>
+
+### Query optimization
+
+<Accordion title="Be specific in queries">
+Specific queries like "email from Sarah about Q4 budget" perform faster than vague queries like "find things about money."
+</Accordion>
+
+<Accordion title="Use date filters when possible">
+Adding time constraints like "last week" or "since January" reduces the search space and speeds up responses.
+</Accordion>
+
+<Accordion title="Limit source scope">
+If you know information is in email, specify "in my email" to avoid searching files and browser history.
+</Accordion>
+
+## Monitoring performance
+
+### Built-in metrics
+
+jo provides performance insights in Settings > Advanced > Performance:
+
+- **Index size**: Total documents and disk usage
+- **Query latency**: Average response times (p50, p95, p99)
+- **Memory usage**: Current and peak memory consumption
+- **Indexing progress**: Documents processed and remaining
+
+### Performance alerts
+
+<Warning>
+jo will display warnings if:
+- Available memory drops below 2GB
+- Disk space falls below 5GB
+- Query latency exceeds 3 seconds consistently
+</Warning>
+
+## Benchmarking your setup
+
+To test jo's performance on your Mac:
+
+<Steps>
+
+<Step title="Run performance test">
+Go to Settings > Advanced > Run Performance Test. This executes a suite of typical queries and measures response times.
+</Step>
+
+<Step title="Review results">
+Compare your results against expected benchmarks:
+- Simple queries: Less than 150ms
+- Semantic queries: Less than 600ms
+- Complex queries: Less than 2 seconds
+</Step>
+
+<Step title="Identify bottlenecks">
+If results are slower than expected, check:
+- Available RAM (should have 6GB+ free)
+- CPU usage in Activity Monitor (should be less than 50% when idle)
+- Disk read/write speeds (SSD should show 1000+ MB/s)
+</Step>
+
+</Steps>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Troubleshooting" icon="wrench" href="/advanced/troubleshooting">
+    Common performance issues and solutions
+  </Card>
+  <Card title="Data management" icon="database" href="/advanced/data-management">
+    Manage indexes and optimize storage
+  </Card>
+</CardGroup>

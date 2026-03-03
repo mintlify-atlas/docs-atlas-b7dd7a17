@@ -1,0 +1,195 @@
+---
+title: System requirements
+description: Hardware and software needed to run jo
+---
+
+## Minimum requirements
+
+To run jo, your Mac must meet these requirements:
+
+<CardGroup cols={2}>
+  <Card title="Processor" icon="microchip">
+    Apple M-series chip (M1, M2, M3, or M4)
+  </Card>
+  <Card title="Memory" icon="memory">
+    16GB RAM (minimum)
+  </Card>
+  <Card title="macOS version" icon="apple">
+    macOS 12.0 (Monterey) or later
+  </Card>
+  <Card title="Storage" icon="hard-drive">
+    5GB free disk space for the app and index
+  </Card>
+</CardGroup>
+
+## Why M-series is required
+
+jo requires an Apple M-series chip because of the Neural Engine—dedicated AI hardware built into M-series processors.
+
+<Info>
+  The Neural Engine is Apple's purpose-built AI accelerator. It can perform up to 15.8 trillion operations per second on M1, and even more on M2/M3/M4 chips.
+</Info>
+
+### What the Neural Engine does for jo
+
+- **Runs AI models locally**: jo uses the Neural Engine to process your queries entirely on-device. No cloud required.
+- **Fast and efficient**: The Neural Engine handles AI tasks without draining your battery or slowing down your Mac.
+- **Enables privacy**: Because AI processing happens on dedicated hardware, jo never needs to send your data to external servers.
+
+<Warning>
+  Intel Macs (pre-2020) do not have a Neural Engine and cannot run jo. If you have an Intel Mac, jo will not work.
+</Warning>
+
+## Compatible Mac models
+
+These Mac models have M-series chips and can run jo:
+
+### MacBook Air
+- MacBook Air (M1, 2020)
+- MacBook Air (M2, 2022)
+- MacBook Air (M3, 2024)
+
+### MacBook Pro
+- MacBook Pro 13-inch (M1, 2020)
+- MacBook Pro 14-inch (M1 Pro/Max, 2021)
+- MacBook Pro 16-inch (M1 Pro/Max, 2021)
+- MacBook Pro 13-inch (M2, 2022)
+- MacBook Pro 14-inch (M2 Pro/Max, 2023)
+- MacBook Pro 16-inch (M2 Pro/Max, 2023)
+- MacBook Pro 14-inch (M3/M3 Pro/M3 Max, 2023)
+- MacBook Pro 16-inch (M3 Pro/M3 Max, 2023)
+
+### Mac mini
+- Mac mini (M1, 2020)
+- Mac mini (M2, 2023)
+- Mac mini (M2 Pro, 2023)
+
+### iMac
+- iMac 24-inch (M1, 2021)
+- iMac 24-inch (M3, 2023)
+
+### Mac Studio
+- Mac Studio (M1 Max/Ultra, 2022)
+- Mac Studio (M2 Max/Ultra, 2023)
+
+### Mac Pro
+- Mac Pro (M2 Ultra, 2023)
+
+<Tip>
+  To check what chip your Mac has, click the Apple menu → About This Mac. Look for "Chip" or "Processor"—if it says "Apple M1", "Apple M2", "Apple M3", or "Apple M4", you're good to go.
+</Tip>
+
+## Memory requirements
+
+jo requires **16GB of RAM** to run efficiently. Here's why:
+
+- **AI models need memory**: Running language models locally requires significant RAM. With less than 16GB, performance suffers.
+- **Index storage**: jo keeps a local index of your data in memory for fast searches. More RAM = faster results.
+- **Multitasking**: You need headroom to run jo alongside your other apps without slowdowns.
+
+<Note>
+  If you have an 8GB M-series Mac, jo will not install. Apple sells most M-series Macs with 16GB by default, but some base models (like the entry-level MacBook Air) ship with 8GB.
+</Note>
+
+## Storage requirements
+
+jo requires approximately **5GB of free disk space**:
+
+- **App size**: ~500MB
+- **Local index**: 2-4GB (varies based on how much data you have)
+- **Temporary files**: ~500MB
+
+If you have a very large email or photo library (100,000+ items), the index may grow larger. jo will warn you if you're running low on disk space.
+
+## Network requirements
+
+jo works **completely offline** for local queries. You only need an internet connection if:
+
+- You choose to use optional cloud models (GPT, Claude, etc.)
+- You want to check for app updates
+
+<Info>
+  Even without internet, jo can search all your notes, emails, photos, and files. The AI runs entirely on your Mac.
+</Info>
+
+## Checking your system
+
+Before downloading jo, verify your Mac meets the requirements:
+
+<Steps>
+  <Step title="Check your chip">
+    1. Click the Apple menu () in the top-left corner
+    2. Select **About This Mac**
+    3. Look for **Chip** or **Processor**
+    
+    You should see "Apple M1", "Apple M2", "Apple M3", or "Apple M4". If you see "Intel", your Mac is not compatible.
+  </Step>
+  
+  <Step title="Check your memory">
+    In the same **About This Mac** window, look for **Memory** or **RAM**.
+    
+    You should see "16 GB" or higher. If you see "8 GB", your Mac does not have enough memory to run jo.
+  </Step>
+  
+  <Step title="Check your storage">
+    1. Click the Apple menu → **About This Mac**
+    2. Click **Storage**
+    
+    Make sure you have at least 5GB of available space. If you're running low, clear out old files or apps to make room.
+  </Step>
+  
+  <Step title="Check your macOS version">
+    1. Click the Apple menu → **About This Mac**
+    2. Look at the macOS version (e.g., "macOS Sonoma 14.2")
+    
+    You need macOS 12.0 (Monterey) or later. If you're on an older version, update macOS before installing jo.
+  </Step>
+</Steps>
+
+<Check>
+  If all four checks pass, your Mac is compatible with jo. Download and install to get started.
+</Check>
+
+## What if my Mac doesn't meet requirements?
+
+<Warning>
+  jo will not run on Intel Macs or Macs with less than 16GB of RAM. There are no workarounds or legacy versions available.
+</Warning>
+
+If your Mac doesn't meet the requirements:
+
+- **Intel Mac**: You'll need to upgrade to an M-series Mac to use jo. There is no Intel version planned.
+- **8GB RAM**: Some M-series Macs can be upgraded to 16GB (e.g., Mac mini, Mac Studio). For MacBook Air and MacBook Pro, RAM is not upgradeable—you'd need to purchase a new model.
+- **Old macOS**: Update to macOS 12.0 or later through System Settings → Software Update.
+
+## Performance expectations
+
+On a supported Mac, you can expect:
+
+- **Initial indexing**: 10-30 minutes (depending on data size)
+- **Query response time**: 1-3 seconds for most queries
+- **Background processing**: Minimal impact on battery and performance
+- **Incremental updates**: jo keeps your index up-to-date automatically
+
+<Tip>
+  jo uses your Mac's Neural Engine for AI processing, which is separate from the CPU and GPU. This means jo won't slow down your other apps or drain your battery like traditional software.
+</Tip>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card
+    title="Download jo"
+    icon="download"
+    href="https://askjo.ai"
+  >
+    Your Mac meets the requirements—download jo and get started
+  </Card>
+  <Card
+    title="Quickstart guide"
+    icon="rocket"
+    href="/quickstart"
+  >
+    Install jo and run your first query in under 2 minutes
+  </Card>
+</CardGroup>

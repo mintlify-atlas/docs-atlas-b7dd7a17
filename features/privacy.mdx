@@ -1,0 +1,289 @@
+---
+title: Privacy and security
+description: How jo protects your data with 100% local processing
+---
+
+jo runs 100% locally on your Mac. Your data never leaves your device unless you explicitly choose to send a specific conversation to a cloud model.
+
+## Core privacy guarantee
+
+<Warning>
+  **Nothing leaves your Mac.** Your notes, photos, emails, and files stay exactly where they are. Nothing is uploaded. Nothing is shared. Nothing leaves your machine. Ever.
+</Warning>
+
+### What this means
+
+- All AI processing happens on your Mac's Neural Engine
+- Your indexed data is stored in an encrypted database locally
+- No external servers ever see your personal content
+- No account required, no data collection, no tracking
+
+## How we guarantee this
+
+You don't have to take our word for it. Here's how you can verify:
+
+### 1. No network calls for your data
+
+Open Activity Monitor while using jo. You'll see zero outbound connections to our servers for your content.
+
+<Tip>
+  **Try it yourself:** 
+  1. Open Activity Monitor (Applications → Utilities)
+  2. Search for "jo" in the process list
+  3. Check the Network tab
+  4. Ask jo several questions about your data
+  5. Verify zero outbound data transfer
+</Tip>
+
+### 2. All processing on-device
+
+The AI model runs locally on your Mac's Neural Engine. Your queries never leave your machine.
+
+- **Local model:** Runs entirely on your M-series chip
+- **Neural Engine:** Uses dedicated AI hardware built into your Mac
+- **No cloud inference:** For searches and summaries of your personal data
+
+### 3. Verifiable architecture
+
+jo uses Apple's native APIs (same as Spotlight). We can't access your data even if we wanted to.
+
+<Info>
+  **Open to audit:** Security researchers can verify our claims. Email security@askjo.ai for technical documentation.
+</Info>
+
+### 4. Source code transparency
+
+We're open about how jo works:
+
+- Documentation of all APIs used
+- Network architecture diagrams available
+- Privacy implementation details published
+- Third-party security audits welcomed
+
+## What data stays local
+
+Everything jo indexes remains on your Mac:
+
+<CardGroup cols={2}>
+  <Card title="Personal files" icon="file">
+    Documents, notes, and local files never leave your Mac
+  </Card>
+  <Card title="Photos" icon="image">
+    Your entire photo library stays local. No uploads, ever.
+  </Card>
+  <Card title="Email content" icon="envelope">
+    Email is indexed locally via IMAP. Content never uploaded.
+  </Card>
+  <Card title="Messages" icon="message">
+    iMessage, WhatsApp, Telegram processed locally on your Mac
+  </Card>
+  <Card title="Calendar" icon="calendar">
+    Events and meetings indexed locally, never synced externally
+  </Card>
+  <Card title="Browsing history" icon="globe">
+    Browser history stays on your Mac, never sent to servers
+  </Card>
+</CardGroup>
+
+## Optional cloud models
+
+While jo runs locally, you can optionally use cloud models for complex tasks.
+
+### When you might use cloud models
+
+- Complex reasoning tasks
+- Advanced analysis
+- Specialized capabilities (coding, math, etc.)
+- When you need extra computing power
+
+<Note>
+  **You control what's shared:** When you call a cloud model, only that specific conversation is sent—never your full indexed data.
+</Note>
+
+### Available cloud models
+
+- GPT (OpenAI)
+- Claude (Anthropic)
+- Gemini (Google)
+- Grok (xAI)
+
+### Privacy with cloud models
+
+When you use a cloud model:
+
+1. **You explicitly choose** to send that conversation
+2. **Only the conversation** is sent, not your entire data
+3. **You control the context** that gets included
+4. **No training on your data** — cloud providers have contracts preventing this
+
+<Warning>
+  **Local by default:** Most queries run completely locally. Cloud models are opt-in for when you need extra power.
+</Warning>
+
+## Privacy vs. other tools
+
+### vs. ChatGPT
+
+ChatGPT requires uploading files to external servers. jo already knows your stuff because it lives on your machine, not theirs.
+
+**ChatGPT:**
+- Lives in the cloud
+- Requires uploading your files
+- Your data on their servers
+- Training data concerns
+
+**jo:**
+- Lives on your Mac
+- Never uploads your files
+- Your data stays local
+- No training on your data
+
+### vs. Rewind
+
+Rewind records your screen (privacy nightmare). jo reads your actual files using the same APIs Apple uses.
+
+**Rewind:**
+- Records everything on your screen
+- Screenshots of sensitive data
+- Captures passwords, banking, etc.
+- Visual recordings stored
+
+**jo:**
+- Reads actual files via Apple APIs
+- No screenshots or recordings
+- Respects app-level permissions
+- Semantic indexing only
+
+<Warning>
+  jo doesn't take screenshots or record your screen. It reads your actual files using secure APIs, just like Spotlight does.
+</Warning>
+
+### vs. Cloud note apps
+
+Notion, Evernote, and others store your notes on their servers.
+
+**Cloud note apps:**
+- All notes on their servers
+- Subject to their privacy policies
+- Potential data breaches
+- Third-party access
+
+**jo:**
+- Indexes your existing Apple Notes
+- Everything stays on your Mac
+- You control your data
+- No third-party servers
+
+## System security
+
+jo respects macOS's built-in security features.
+
+### Permissions
+
+jo asks for explicit permissions:
+
+- **Photos:** Access to Photos library
+- **Contacts:** Access to Contacts
+- **Calendar:** Access to Calendar events
+- **Files:** Access to specified directories
+
+You approve each permission via macOS's standard permission dialogs.
+
+<Info>
+  **macOS protection:** If jo tries to access something without permission, macOS blocks it and prompts you to approve or deny.
+</Info>
+
+### Encryption
+
+jo's local index is encrypted:
+
+- **At rest:** Encrypted database on your Mac
+- **In memory:** Secure memory handling
+- **No plain text:** Sensitive data never stored in plain text
+
+### App sandboxing
+
+jo runs in macOS's app sandbox:
+
+- Limited system access
+- Can't access other users' data
+- Restricted to approved directories
+- Monitored by macOS security
+
+## No account required
+
+jo doesn't require creating an account.
+
+**What this means:**
+- No username/password
+- No email collection
+- No personal information shared
+- No tracking across devices
+
+<Tip>
+  **Anonymous usage:** Even for analytics, jo doesn't know who you are. We see anonymous usage patterns, never personal data or queries.
+</Tip>
+
+## GDPR and compliance
+
+Because jo processes everything locally:
+
+- **GDPR compliant:** Your data never leaves your device
+- **CCPA compliant:** No personal data collected or sold
+- **HIPAA friendly:** Suitable for sensitive information
+- **Attorney-client privilege:** Safe for legal professionals
+
+<Note>
+  **For professionals:** Lawyers, doctors, therapists, and other professionals with confidentiality requirements can use jo without concern. Your data stays completely private.
+</Note>
+
+## Uninstalling jo
+
+When you uninstall jo:
+
+1. **Index deleted:** All indexed data is removed
+2. **Original files safe:** Your Notes, Photos, Mail, etc. are untouched
+3. **No traces:** No data left on external servers (there are none)
+4. **Complete removal:** Standard Mac app uninstall
+
+<Info>
+  **Clean uninstall:** Simply drag jo to the Trash. All indexed data goes with it. Your original data in Apple Notes, Photos, Mail, etc. remains exactly as it was.
+</Info>
+
+## Questions about privacy
+
+### "How can I be sure my data doesn't leave my Mac?"
+
+You can verify it:
+- Monitor network activity in Activity Monitor
+- Review our technical documentation
+- Contact security@askjo.ai for audit details
+- Use a network monitoring tool to verify zero outbound data
+
+### "What if I use cloud models?"
+
+You explicitly choose to send a conversation to a cloud model. Only that specific conversation is sent, never your full data index.
+
+### "Can jo employees see my data?"
+
+No. jo employees cannot see your data because it never leaves your Mac. There's nothing for us to see on our servers because we don't have your data.
+
+### "What about analytics?"
+
+We collect anonymous usage analytics:
+- Which features are used (not what you searched for)
+- Performance metrics
+- Crash reports
+- No personal data, queries, or content
+
+<Warning>
+  **Never your content:** We never see your queries, your search results, or any of your personal data. Only anonymous usage patterns.
+</Warning>
+
+## Privacy promise
+
+jo's privacy promise is simple:
+
+> Your data lives on your Mac. All AI processing happens on your Mac. Nothing leaves your Mac unless you explicitly choose to send a specific conversation to a cloud model. No accounts, no tracking, no exceptions.
+
+This isn't marketing. It's our architecture. We built it this way on purpose.

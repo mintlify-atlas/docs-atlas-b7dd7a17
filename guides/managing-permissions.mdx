@@ -1,0 +1,316 @@
+---
+title: "Managing permissions"
+description: "Control what data jo can access on your Mac with granular permission settings"
+icon: "shield-check"
+---
+
+jo requires explicit permission to access your data. You control exactly what jo sees, and you can revoke access at any time. All data stays on your Mac.
+
+## Understanding jo's permission model
+
+jo uses macOS system permissions—the same ones that Apple's native apps use. This means:
+
+- **No backdoors:** jo cannot access data without your explicit approval
+- **System-level control:** macOS enforces these permissions at the operating system level
+- **Full transparency:** You can see exactly what jo is accessing through macOS System Settings
+- **Complete privacy:** Everything stays local—permissions only control local access, never cloud uploads
+
+<Note>
+**During installation**, jo requests permissions for the first time. You can change these settings anytime through System Settings or within the jo app.
+</Note>
+
+## Permission types explained
+
+jo requests access to specific data sources on your Mac. Each permission is independent and granular:
+
+<AccordionGroup>
+  <Accordion title="📧 Mail (IMAP)" icon="envelope">
+    **What this allows:**
+    - Read email content and metadata
+    - Search through email threads and conversations
+    - Access email attachments
+    - Index sender and recipient information
+    
+    **What this does NOT allow:**
+    - Send emails on your behalf
+    - Delete or modify emails
+    - Access email from other accounts not configured in Mail.app
+    
+    **Example queries enabled:**
+    - "What did my accountant say about the W-9?"
+    - "Catch me up on emails from Sarah this week"
+    
+    <Tip>jo only accesses emails visible in your Mac's Mail app. Configure IMAP accounts in Mail.app first.</Tip>
+  </Accordion>
+  
+  <Accordion title="📁 Files and Folders" icon="folder">
+    **What this allows:**
+    - Read files in your Documents, Downloads, and Desktop folders
+    - Index file names, content, and metadata
+    - Search through PDFs, text files, and documents
+    
+    **What this does NOT allow:**
+    - Modify or delete files
+    - Access system files or other users' files
+    - Create new files without your explicit request
+    
+    **Example queries enabled:**
+    - "Where's that contract PDF from March?"
+    - "Find my competitor research notes"
+    
+    <Warning>By default, jo indexes common folders. You can exclude specific folders in jo Settings > Privacy.</Warning>
+  </Accordion>
+  
+  <Accordion title="📝 Notes" icon="note-sticky">
+    **What this allows:**
+    - Read notes from Apple Notes app
+    - Search note titles and content
+    - Access note attachments and embedded images
+    
+    **What this does NOT allow:**
+    - Edit or delete notes
+    - Access password-protected notes
+    - Share notes with others
+    
+    **Example queries enabled:**
+    - "What did I write about the kitchen remodel?"
+    - "Show me my meeting notes with Jake"
+  </Accordion>
+  
+  <Accordion title="🌐 Browser History" icon="globe">
+    **What this allows:**
+    - Read browsing history from Safari and Chrome
+    - Index page titles and URLs
+    - Search bookmarks and saved pages
+    
+    **What this does NOT allow:**
+    - Access private/incognito browsing history
+    - Read passwords or form data
+    - Modify bookmarks or history
+    
+    **Example queries enabled:**
+    - "What was that Stripe documentation page I was reading?"
+    - "Find that productivity podcast I started"
+    
+    <Note>jo only indexes metadata (titles, URLs, timestamps), not full page content.</Note>
+  </Accordion>
+  
+  <Accordion title="📅 Calendar" icon="calendar">
+    **What this allows:**
+    - Read calendar events and meeting details
+    - Access event notes and attendee lists
+    - Search past and upcoming events
+    
+    **What this does NOT allow:**
+    - Create, modify, or delete events
+    - Send meeting invitations
+    - Access other users' calendars
+    
+    **Example queries enabled:**
+    - "Prep me for my 2pm with Sarah"
+    - "What meetings do I have tomorrow?"
+  </Accordion>
+  
+  <Accordion title="📸 Photos" icon="image">
+    **What this allows:**
+    - Read photos from the Photos app
+    - Search by visual content, location, and date
+    - Access photo metadata (location, date taken)
+    
+    **What this does NOT allow:**
+    - Edit or delete photos
+    - Upload photos anywhere
+    - Access hidden or deleted photos
+    
+    **Example queries enabled:**
+    - "Show me photos from that Tokyo restaurant"
+    - "Find pictures with blue doors from 2019"
+  </Accordion>
+  
+  <Accordion title="💬 Messages" icon="message">
+    **What this allows:**
+    - Read iMessage and SMS conversations
+    - Search message content and attachments
+    - Access message timestamps and sender info
+    
+    **What this does NOT allow:**
+    - Send messages
+    - Delete conversations
+    - Access deleted messages
+    
+    **Example queries enabled:**
+    - "What did I promise to send Jake?"
+    - "Find that contractor name Mike texted me"
+  </Accordion>
+</AccordionGroup>
+
+## How to grant permissions
+
+<Steps>
+  <Step title="During first launch">
+    When you first open jo, it displays a permissions checklist. Check the boxes for data sources you want jo to access, then click **Grant Permissions**.
+    
+    macOS displays system permission dialogs for each checked item. Click **Allow** for each one.
+  </Step>
+  
+  <Step title="Through System Settings (anytime)">
+    You can manage jo's permissions at any time:
+    
+    1. Open **System Settings** on your Mac
+    2. Go to **Privacy & Security**
+    3. Select the permission type (Files, Calendar, etc.)
+    4. Find **jo** in the app list and toggle it on or off
+  </Step>
+  
+  <Step title="Within the jo app">
+    Jo provides a convenient permissions manager:
+    
+    1. Open jo settings (click the gear icon or press **Cmd+,**)
+    2. Go to the **Privacy** tab
+    3. Toggle permissions on or off directly
+    4. Click **Open System Settings** to modify restricted permissions
+  </Step>
+</Steps>
+
+## Revoking permissions
+
+You can revoke any permission at any time with no penalty:
+
+<Steps>
+  <Step title="Choose revocation method">
+    Use System Settings (for complete removal) or jo Settings (for temporary disabling).
+  </Step>
+  
+  <Step title="Revoke the permission">
+    Toggle the permission off. jo immediately stops accessing that data source.
+  </Step>
+  
+  <Step title="Optional: Delete indexed data">
+    In jo Settings > Privacy, click **Clear Index** next to the data source to delete all previously indexed information.
+    
+    <Warning>Clearing the index means jo will need to re-index if you re-enable that permission later.</Warning>
+  </Step>
+</Steps>
+
+## Recommended permission sets
+
+Not sure what to enable? Here are common configurations:
+
+<Tabs>
+  <Tab title="Essential (Recommended)">
+    **Best for:** Most users who want core functionality
+    
+    - ✅ Mail
+    - ✅ Files and Folders
+    - ✅ Notes
+    - ✅ Browser History
+    - ❌ Calendar
+    - ❌ Photos
+    - ❌ Messages
+    
+    This configuration lets jo search your documents, emails, and notes while keeping photos and messages private.
+  </Tab>
+  
+  <Tab title="Full Access">
+    **Best for:** Users who want jo to know everything
+    
+    - ✅ Mail
+    - ✅ Files and Folders
+    - ✅ Notes
+    - ✅ Browser History
+    - ✅ Calendar
+    - ✅ Photos
+    - ✅ Messages
+    
+    This enables all jo features, including meeting prep, photo search, and message lookup.
+  </Tab>
+  
+  <Tab title="Minimal">
+    **Best for:** Privacy-conscious users or initial testing
+    
+    - ✅ Files and Folders
+    - ✅ Notes
+    - ❌ Mail
+    - ❌ Browser History
+    - ❌ Calendar
+    - ❌ Photos
+    - ❌ Messages
+    
+    This limits jo to your documents and notes—no communication or browsing data.
+  </Tab>
+</Tabs>
+
+## Excluding specific folders or data
+
+Even with permissions enabled, you can exclude specific locations:
+
+1. Open jo Settings > **Privacy**
+2. Click **Manage Exclusions**
+3. Add folders, files, or email accounts to exclude:
+   - Drag folders into the exclusion list
+   - Add email addresses to exclude specific senders
+   - List file patterns (e.g., `*.env`, `credentials.*`)
+
+<Tip>
+**Common exclusions:**
+- Work-related folders when using jo for personal tasks
+- Sensitive financial documents
+- Personal journals or private notes
+</Tip>
+
+## Privacy guarantees
+
+Here's what jo promises about your data:
+
+<CardGroup cols={2}>
+  <Card title="100% Local" icon="laptop">
+    All indexing and processing happens on your Mac. Nothing is uploaded.
+  </Card>
+  
+  <Card title="Encrypted Index" icon="lock">
+    jo's search index is encrypted using macOS FileVault encryption.
+  </Card>
+  
+  <Card title="No Analytics" icon="chart-line">
+    jo doesn't collect usage data, search queries, or telemetry.
+  </Card>
+  
+  <Card title="Open to Audit" icon="magnifying-glass">
+    Security researchers can verify jo's privacy claims. Email security@askjo.ai for technical documentation.
+  </Card>
+</CardGroup>
+
+## Troubleshooting permissions
+
+<AccordionGroup>
+  <Accordion title="Jo can't access my Mail" icon="triangle-exclamation">
+    **Solution:**
+    1. Verify Mail.app is configured with IMAP accounts (not POP3)
+    2. Check System Settings > Privacy > Full Disk Access and ensure **jo** is listed
+    3. Restart jo after granting permissions
+  </Accordion>
+  
+  <Accordion title="Some folders aren't being indexed" icon="folder-xmark">
+    **Solution:**
+    - Check that folders aren't in the exclusion list (Settings > Privacy > Exclusions)
+    - Verify the folder isn't protected by macOS (like system folders)
+    - Ensure jo has Full Disk Access in System Settings
+  </Accordion>
+  
+  <Accordion title="Permission prompts keep appearing" icon="bell">
+    **Solution:**
+    This usually means permissions weren't fully granted. Go to System Settings > Privacy & Security and manually enable all requested permissions for jo.
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Your first queries" icon="comment-dots" href="/guides/first-queries">
+    Start asking jo questions now that permissions are set
+  </Card>
+  
+  <Card title="Cloud integration" icon="cloud" href="/guides/cloud-integration">
+    Connect cloud AI models for advanced capabilities
+  </Card>
+</CardGroup>

@@ -1,0 +1,370 @@
+---
+title: "Cloud integration"
+description: "Connect GPT, Claude, Gemini, or Grok for advanced AI capabilities beyond local processing"
+icon: "cloud"
+---
+
+jo runs entirely on your Mac using local AI models. But when you need more powerful reasoning, creative help, or complex analysis, you can optionally call in cloud AI models.
+
+## How cloud integration works
+
+Cloud integration is **opt-in and query-specific**. Here's how it works:
+
+1. **Default:** All queries run locally on your Mac
+2. **When you need more:** Explicitly request a cloud model for that specific conversation
+3. **What gets sent:** Only the current conversation and relevant context—never your entire indexed data
+4. **Pricing:** Pay per use, typically $0.01-0.05 per conversation
+
+<Note>
+**Privacy promise:** Your indexed data (emails, notes, files) stays on your Mac. When you use a cloud model, jo only sends the specific conversation and relevant snippets you're discussing.
+</Note>
+
+## Supported cloud models
+
+jo integrates with four major AI providers:
+
+<CardGroup cols={2}>
+  <Card title="OpenAI GPT-5.2" icon="bolt">
+    **Best for:** General reasoning, coding, creative writing
+    
+    **Cost:** ~$0.02-0.05 per conversation
+    
+    **Speed:** Fast (2-5 seconds)
+  </Card>
+  
+  <Card title="Anthropic Claude" icon="brain">
+    **Best for:** Long-form analysis, nuanced reasoning, detailed explanations
+    
+    **Cost:** ~$0.03-0.05 per conversation
+    
+    **Speed:** Medium (3-7 seconds)
+  </Card>
+  
+  <Card title="Google Gemini" icon="sparkles">
+    **Best for:** Multimodal tasks, image understanding, research synthesis
+    
+    **Cost:** ~$0.01-0.03 per conversation
+    
+    **Speed:** Fast (2-4 seconds)
+  </Card>
+  
+  <Card title="xAI Grok" icon="rocket">
+    **Best for:** Real-time information, current events, unconventional takes
+    
+    **Cost:** ~$0.02-0.04 per conversation
+    
+    **Speed:** Fast (2-5 seconds)
+  </Card>
+</CardGroup>
+
+## Connecting cloud models
+
+You can connect cloud models during initial setup or anytime later:
+
+<Steps>
+  <Step title="Open cloud settings">
+    In jo, click the gear icon (or press **Cmd+,**) to open Settings, then navigate to the **Cloud Models** tab.
+  </Step>
+  
+  <Step title="Choose a provider">
+    Click **Connect** next to the cloud provider you want to add. Each provider has slightly different setup steps.
+  </Step>
+  
+  <Step title="Add your API key">
+    <Tabs>
+      <Tab title="OpenAI GPT">
+        1. Visit [platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+        2. Click **Create new secret key**
+        3. Name it "jo" and click **Create**
+        4. Copy the key (starts with `sk-`)
+        5. Paste it into jo's API Key field
+        6. Click **Verify & Save**
+        
+        <Tip>OpenAI requires a paid account with credits. Add at least $10 to start.</Tip>
+      </Tab>
+      
+      <Tab title="Anthropic Claude">
+        1. Visit [console.anthropic.com/settings/keys](https://console.anthropic.com/settings/keys)
+        2. Click **Create Key**
+        3. Name it "jo" and click **Create**
+        4. Copy the key (starts with `sk-ant-`)
+        5. Paste it into jo's API Key field
+        6. Click **Verify & Save**
+        
+        <Tip>Claude requires a paid plan. The first $5 of usage is usually free for new accounts.</Tip>
+      </Tab>
+      
+      <Tab title="Google Gemini">
+        1. Visit [aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
+        2. Click **Create API Key**
+        3. Select your Google Cloud project (or create one)
+        4. Copy the key
+        5. Paste it into jo's API Key field
+        6. Click **Verify & Save**
+        
+        <Tip>Gemini offers a free tier with generous limits before charging.</Tip>
+      </Tab>
+      
+      <Tab title="xAI Grok">
+        1. Visit [console.x.ai/api-keys](https://console.x.ai/api-keys)
+        2. Click **Create new API key**
+        3. Name it "jo" and click **Create**
+        4. Copy the key
+        5. Paste it into jo's API Key field
+        6. Click **Verify & Save**
+        
+        <Tip>Grok requires an xAI developer account. Sign up at console.x.ai.</Tip>
+      </Tab>
+    </Tabs>
+  </Step>
+  
+  <Step title="Test the connection">
+    jo automatically tests the API key when you save it. If successful, you'll see a green checkmark and your account balance (if available).
+    
+    <Note>Some providers may take a few minutes to activate new API keys.</Note>
+  </Step>
+</Steps>
+
+## When to use cloud models
+
+Use local AI for most queries. Call in cloud models when you need:
+
+<AccordionGroup>
+  <Accordion title="Complex reasoning and analysis" icon="brain">
+    **Use case:** Multi-step problem solving, strategy, planning
+    
+    **Example queries:**
+    - "Help me prep for this salary negotiation" (after sharing context)
+    - "Analyze the pros and cons of these three contractor quotes"
+    - "Create a project plan based on my meeting notes"
+    
+    **Why cloud:** Local models excel at retrieval and simple queries. Cloud models handle complex synthesis and reasoning.
+  </Accordion>
+  
+  <Accordion title="Creative and generative tasks" icon="pen-fancy">
+    **Use case:** Writing, brainstorming, content creation
+    
+    **Example queries:**
+    - "Draft a professional response to this client email"
+    - "Help me brainstorm names for this project"
+    - "Write a summary of my conference notes"
+    
+    **Why cloud:** Cloud models are trained on broader datasets and produce higher-quality creative output.
+  </Accordion>
+  
+  <Accordion title="Technical or specialized knowledge" icon="book">
+    **Use case:** Coding, technical explanations, domain expertise
+    
+    **Example queries:**
+    - "Explain this error message in my code file"
+    - "What legal considerations should I know for this contract?"
+    - "Help me understand this medical report"
+    
+    **Why cloud:** Cloud models have more extensive training in specialized domains.
+  </Accordion>
+  
+  <Accordion title="Long-form synthesis" icon="file-lines">
+    **Use case:** Summarizing large amounts of information
+    
+    **Example queries:**
+    - "Summarize everything I learned at that conference last year"
+    - "Create a comprehensive client profile from all my notes and emails with them"
+    
+    **Why cloud:** Cloud models can handle longer contexts and produce more coherent long-form content.
+  </Accordion>
+</AccordionGroup>
+
+## Using cloud models in queries
+
+There are three ways to invoke a cloud model:
+
+### Method 1: Explicit request (recommended)
+
+Simply mention the model in your query:
+
+<CodeGroup>
+```plaintext GPT
+"Call in GPT: help me draft a response to this client email"
+```
+
+```plaintext Claude
+"Use Claude to analyze these contractor quotes"
+```
+
+```plaintext Gemini
+"Ask Gemini to help me brainstorm project names"
+```
+
+```plaintext Grok
+"Have Grok explain this technical concept"
+```
+</CodeGroup>
+
+### Method 2: Quick action button
+
+When viewing a local response, click the **Enhance with Cloud** button that appears above the answer. Select your preferred model from the dropdown.
+
+### Method 3: Auto-detection (optional)
+
+In Settings > Cloud Models, enable **Auto-detect complex queries**. jo will suggest using a cloud model when it detects:
+
+- Requests for creative writing
+- Multi-step reasoning
+- Technical explanations beyond local capability
+
+<Warning>
+**Auto-detection** is disabled by default to prevent unexpected charges. Enable it only if you're comfortable with automatic cloud usage.
+</Warning>
+
+## Cost transparency
+
+jo shows costs before and after cloud queries:
+
+### Before sending
+
+When you request a cloud model, jo displays an estimated cost:
+
+> "This query will use GPT-5.2. Estimated cost: **$0.03**"
+>
+> [Confirm] [Cancel]
+
+Click **Confirm** to proceed or **Cancel** to stick with local processing.
+
+### After the response
+
+The actual cost appears at the bottom of each cloud response:
+
+> ✓ Response generated by GPT-5.2 in 3.2s · Cost: **$0.027**
+
+### Monthly tracking
+
+View your cloud usage in Settings > Cloud Models > Usage:
+
+<img src="/images/cloud-usage-example.png" alt="Monthly cloud usage breakdown" />
+
+- Current month spending
+- Cost per provider
+- Query count and average cost
+- Spending limit warnings
+
+## Setting spending limits
+
+Prevent surprise charges by setting monthly limits:
+
+<Steps>
+  <Step title="Open spending settings">
+    Go to Settings > Cloud Models > **Spending Limits**
+  </Step>
+  
+  <Step title="Set monthly budget">
+    Enter your desired monthly limit (e.g., $10). jo will warn you at 80% and stop using cloud models at 100%.
+  </Step>
+  
+  <Step title="Configure alerts">
+    Choose how to be notified:
+    - **Banner notification** (default)
+    - **Email alert** (enter your email)
+    - **Block automatically** (prevent overspending)
+  </Step>
+</Steps>
+
+<Tip>
+**Recommended limits:** Most users spend $3-8/month. Start with a $10 limit and adjust based on your usage patterns.
+</Tip>
+
+## What gets sent to the cloud
+
+When you use a cloud model, jo sends:
+
+✅ **What is sent:**
+- Your current query
+- The conversation history (within this session)
+- Relevant snippets from your data (e.g., the specific email you're asking about)
+
+❌ **What is NOT sent:**
+- Your complete email archive
+- All your notes or files
+- Your search index
+- Metadata about your data sources
+
+<Note>
+jo sends the **minimum context needed** to answer your question. For example, if you ask about an email, jo sends that email—not your entire inbox.
+</Note>
+
+## Privacy and security
+
+### Provider data policies
+
+Each provider has different data retention policies:
+
+| Provider | Data Retention | Training on Your Data |
+|----------|----------------|----------------------|
+| OpenAI GPT | 30 days | No (API data not used for training) |
+| Anthropic Claude | Not retained | No (API data not used for training) |
+| Google Gemini | 18 months | No (if using Gemini API, not AI Studio) |
+| xAI Grok | 30 days | No (API data not used for training) |
+
+<Warning>
+**Important:** jo uses the **API versions** of these models, which have stricter privacy policies than consumer versions (like ChatGPT web interface).
+</Warning>
+
+### Disabling cloud integration
+
+You can disable cloud models entirely:
+
+1. Go to Settings > Cloud Models
+2. Click **Disconnect All**
+3. Confirm the action
+
+jo will return to 100% local operation. You can reconnect anytime.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="'Invalid API key' error" icon="key">
+    **Solutions:**
+    - Verify you copied the entire key (they're long!)
+    - Check that the API key is active in the provider's console
+    - Ensure your provider account has credits or an active payment method
+    - Try generating a new API key
+  </Accordion>
+  
+  <Accordion title="Cloud queries are slow" icon="hourglass">
+    **Possible causes:**
+    - Network latency (cloud queries require internet)
+    - Provider API slowdowns (check status.openai.com, etc.)
+    - Large context being sent (reduce conversation length)
+    
+    **Solution:** Local queries are always faster. Use cloud only when needed.
+  </Accordion>
+  
+  <Accordion title="Unexpected charges" icon="credit-card">
+    **Review:**
+    - Check Settings > Cloud Models > Usage for a breakdown
+    - Look for auto-detection settings (may be enabled)
+    - Review recent queries in the history panel
+    
+    **Prevent:** Set spending limits in Settings > Cloud Models > Spending Limits
+  </Accordion>
+  
+  <Accordion title="'Rate limit exceeded' message" icon="gauge-high">
+    **Cause:** You've hit the provider's usage limits (usually temporary)
+    
+    **Solution:**
+    - Wait a few minutes and try again
+    - Check your API tier with the provider (some have stricter limits)
+    - Upgrade your provider account for higher limits
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Your first queries" icon="comment-dots" href="/guides/first-queries">
+    Learn how to ask jo questions effectively
+  </Card>
+  
+  <Card title="Keyboard shortcuts" icon="keyboard" href="/guides/keyboard-shortcuts">
+    Master jo's keyboard shortcuts for efficiency
+  </Card>
+</CardGroup>

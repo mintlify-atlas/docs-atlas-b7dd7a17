@@ -1,0 +1,317 @@
+---
+title: 'Browser History'
+description: 'Search your browsing history across all major browsers with natural language'
+icon: 'browser'
+---
+
+## Overview
+
+jo indexes your browser history to help you rediscover websites, articles, and pages you've visited. Instead of scrolling through endless history lists or trying to remember exact URLs, ask jo naturally about pages you've seen — even if you only remember the topic or visual details.
+
+## Supported Browsers
+
+jo works with the most popular browsers on Mac:
+
+<ParamField path="Safari" type="fully-supported">
+  Apple's native browser. Works automatically with macOS permissions.
+</ParamField>
+
+<ParamField path="Chrome" type="fully-supported">
+  Google Chrome and Chromium-based browsers (Edge, Brave, Arc, Vivaldi)
+</ParamField>
+
+<ParamField path="Firefox" type="fully-supported">
+  Mozilla Firefox and Firefox Developer Edition
+</ParamField>
+
+<ParamField path="Arc" type="fully-supported">
+  The Browser Company's Arc browser (Chromium-based)
+</ParamField>
+
+<ParamField path="Brave" type="fully-supported">
+  Privacy-focused Brave browser (Chromium-based)
+</ParamField>
+
+<Info>
+jo can index multiple browsers simultaneously. If you use Safari for work and Chrome for personal browsing, jo searches both.
+</Info>
+
+## What Data is Indexed
+
+jo captures these elements from your browsing history:
+
+### Page Information
+
+- **Page titles** — The title shown in the browser tab
+- **URLs** — Full web addresses
+- **Visit timestamps** — When you visited each page
+- **Visit frequency** — How many times you've visited a page
+- **Page content** — Text content from pages you spend time on (optional)
+
+### What's NOT Indexed
+
+- **Passwords or form data** — jo never accesses credentials
+- **Private/Incognito browsing** — Private sessions are not indexed
+- **Cookies or session data** — Only page content is indexed
+- **Deleted history** — If you clear your browser history, it's removed from jo's index
+
+<Note>
+jo only indexes pages where you spent more than 10 seconds. Quick navigation through pages isn't saved.
+</Note>
+
+## Enabling Browser History
+
+### Safari
+
+1. Open jo Settings → Data Sources → Browser History
+2. Click **Add Browser** → **Safari**
+3. Grant permission when macOS prompts for Safari access
+4. jo begins indexing immediately
+
+### Chrome / Chromium Browsers
+
+1. Open jo Settings → Data Sources → Browser History
+2. Click **Add Browser** → **Chrome** (or select Edge, Brave, Arc, etc.)
+3. Grant permission to read browser data
+4. jo automatically finds your Chrome profile and starts indexing
+
+**Multiple Profiles**: If you use Chrome profiles (Work, Personal), jo can index all of them. Select which profiles to include during setup.
+
+### Firefox
+
+1. Open jo Settings → Data Sources → Browser History
+2. Click **Add Browser** → **Firefox**
+3. Select your Firefox profile (jo will list available profiles)
+4. Grant permission and start indexing
+
+### Disabling Browsers
+
+To stop indexing a browser:
+
+1. Open jo Settings → Data Sources → Browser History
+2. Find the browser in your list
+3. Click **Disable** or **Remove**
+4. jo will stop tracking new visits and optionally delete existing history
+
+## Privacy Controls
+
+jo gives you granular control over what browsing data is indexed:
+
+### Domain Exclusions
+
+Exclude entire websites from being indexed:
+
+1. Settings → Browser History → **Excluded Domains**
+2. Add domains you want to skip (e.g., `facebook.com`, `twitter.com`)
+3. jo will never index pages from these domains
+
+**Common exclusions**:
+- Social media sites (Facebook, Twitter, Instagram)
+- Banking or financial sites
+- Personal health portals
+- Any site containing sensitive information
+
+### Time Limits
+
+Control how far back jo indexes:
+
+- **Last 6 months** (default)
+- **Last 1 year**
+- **Last 2 years**
+- **All history**
+
+<Tip>
+Limiting history to 6-12 months improves search speed and reduces storage usage while keeping recent browsing searchable.
+</Tip>
+
+### Content Indexing
+
+Choose whether jo reads page content:
+
+- **Titles and URLs only** — Fast, minimal storage, basic search
+- **Full page content** — Slower indexing, more storage, deeper search capabilities
+
+<Info>
+By default, jo only indexes page titles and URLs. You can enable full content indexing for more accurate searches in Settings → Browser History → Content Indexing.
+</Info>
+
+### Automatic Cleanup
+
+jo respects your browser's history settings:
+
+- If you clear browser history, jo removes those entries from its index
+- You can manually clear jo's history index: Settings → Browser History → **Clear Index**
+
+## Search Capabilities
+
+### Natural Language Queries
+
+Ask about pages you've visited naturally:
+
+- **"What was that productivity podcast I started?"** — Finds pages by content
+- **"Where's that Stripe page I had open?"** — Searches by domain or topic
+- **"Show me that article about remote work I read last week"** — Filters by time and topic
+- **"Find the documentation for Next.js routing"** — Searches technical pages
+
+### Content Understanding
+
+jo understands what pages are about, even if the title isn't descriptive:
+
+```
+You: "Find that recipe for chocolate chip cookies"
+jo: Found "Best Ever CCC Recipe - Sweet Tooth Blog" 
+     visited on March 10, 2024
+     https://sweettooth.com/recipes/chocolate-chip-cookies
+```
+
+### Visual Memory
+
+Describe what you remember seeing:
+
+```
+You: "That blue website about design tools"
+jo: Found "Figma - Design Tools" visited on March 15
+     The page had a blue header and featured design collaboration tools.
+```
+
+### Cross-Source Intelligence
+
+jo connects browsing with other data:
+
+```
+You: "What websites did Sarah mention in her email?"
+jo: Sarah Chen mentioned these sites in her March 15 email:
+     • notion.so/project-planning (you visited this on March 16)
+     • figma.com/design-system (not yet visited)
+```
+
+## Example Queries
+
+Real ways users search browser history with jo:
+
+### Finding Specific Pages
+
+- "Where's that GitHub repo for React components?"
+- "Show me the Airbnb listing I looked at yesterday"
+- "Find the tutorial on CSS grid I was reading"
+
+### Rediscovering Content
+
+- "What was that interesting article about AI?"
+- "Show me the blog post about productivity I found last month"
+- "Find the video I watched about coffee brewing"
+
+### Research and Reference
+
+- "Show me all the articles I read about Next.js"
+- "What documentation pages have I visited for Stripe?"
+- "Find the comparison of project management tools I researched"
+
+### Shopping and Products
+
+- "Show me the laptops I was looking at last week"
+- "Find that Etsy shop with the custom mugs"
+- "Where was that furniture store with the desk I liked?"
+
+### Time-Based Searches
+
+- "What did I browse yesterday afternoon?"
+- "Show me pages I visited during my research last Tuesday"
+- "Find websites from my vacation in July"
+
+## Performance and Storage
+
+### Initial Indexing
+
+When you first enable browser history:
+
+- **Time**: 5-10 minutes for 10,000-50,000 history entries
+- **Impact**: Uses about 10% CPU during initial indexing
+- **What's indexed**: Based on your time limit setting (e.g., last 6 months)
+
+### Continuous Indexing
+
+After initial setup:
+
+- New pages are indexed within seconds after you visit them
+- Background indexing uses minimal resources
+- jo monitors browser databases for changes automatically
+
+### Storage Requirements
+
+Browser history index size:
+
+- **Titles/URLs only**: ~1KB per 100 pages (very small)
+- **Full content**: ~10-50KB per page (moderate)
+- **Example**: 10,000 pages with full content ≈ 100-500MB
+
+<Tip>
+If storage is a concern, stick with "Titles and URLs only" indexing. You'll still get good results for most searches.
+</Tip>
+
+## Privacy and Security
+
+### Local Processing Only
+
+Your browsing history stays private:
+
+- All indexing happens on your Mac
+- No browsing data is uploaded to cloud servers
+- jo uses the same APIs as browser history viewers
+- You can audit jo's network activity (Settings → Privacy → Network Monitor)
+
+### No Tracking
+
+jo is fundamentally different from browser tracking:
+
+- **No cookies or analytics** — jo doesn't track your behavior
+- **No advertising** — Your data isn't used for ads
+- **No external sharing** — Only you can see your indexed history
+
+### Secure Storage
+
+How browsing data is stored:
+
+- Encrypted local database on your Mac
+- Protected by macOS file permissions
+- Deleted when you uninstall jo (optional)
+
+<Warning>
+While jo keeps your data private, remember that it indexes browser history. If someone gains access to your Mac, they could potentially access jo's search results. Use macOS's built-in security features (FileVault, password protection) to secure your device.
+</Warning>
+
+## Troubleshooting
+
+### jo Can't Access Browser History
+
+1. Verify you granted permission in macOS System Settings → Privacy & Security
+2. Check that the browser is installed in the default location
+3. Try removing and re-adding the browser in jo's settings
+4. Restart jo after granting new permissions
+
+### Pages Not Appearing in Search
+
+1. Verify the page was visited more than 10 seconds ago (minimum threshold)
+2. Check if the domain is in your Excluded Domains list
+3. Ensure the page is within your time limit (e.g., last 6 months)
+4. Try re-indexing: Settings → Browser History → **Re-index**
+
+### Search Results Are Inaccurate
+
+If jo isn't finding the right pages:
+
+1. Enable **Full Page Content** indexing for better accuracy
+2. Try different search phrases (jo understands synonyms)
+3. Include more context in your query (e.g., "that article about React hooks from last week")
+
+### Chrome Profile Not Detected
+
+1. Ensure Chrome is closed when adding it to jo
+2. Check that your profile is in the default Chrome location
+3. Try manually selecting your profile: Settings → Browser History → Chrome → **Select Profile**
+
+## Related Data Sources
+
+- [Files](/data-sources/files) — Files you downloaded from websites
+- [Notes](/data-sources/notes) — Notes with links to websites
+- [Email](/data-sources/email) — Emails containing URLs
